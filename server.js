@@ -13,6 +13,8 @@ app.get('/', (req, res) => res.send('Hello there'))
 
 app.get('/api/bug', (req, res) => {
 
+    console.log(req.query)
+
     const filterBy = { txt: req.query.txt, minSeverity: +req.query.minSeverity }
 
     bugService.query()

@@ -15,7 +15,7 @@ export function BugIndex() {
 
     useEffect(() => {
         setSearchParams(filterBy)
-        loadBugs()
+        loadBugs(filterBy)
     }, [filterBy])
 
     function loadBugs() {
