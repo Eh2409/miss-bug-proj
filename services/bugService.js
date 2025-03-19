@@ -3,7 +3,7 @@ import fs from 'fs'
 
 export const bugService = {
     query,
-    get,
+    getById,
     remove,
     save
 }
@@ -19,6 +19,7 @@ function getById(bugId) {
     if (!bug) return Promise.reject('cannot find bug - ' + bugId)
     return Promise.resolve(bug)
 }
+
 function remove(bugId) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
     if (bugIdx === -1) return Promise.reject('cannot remove bug - ' + bugId)
