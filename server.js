@@ -4,6 +4,9 @@ import { loggerService } from './services/logger.service.js'
 import express from 'express'
 const app = express()
 
+import cookieParser from 'cookie-parser'
+app.use(cookieParser())
+
 app.use(express.static('public'))
 
 app.get('/', (req, res) => res.send('Hello there'))
@@ -18,7 +21,6 @@ app.get('/api/bug', (req, res) => {
 })
 
 app.get('/api/bug/save', (req, res) => {
-
     const bugToSave = {
         _id: req.query._id,
         title: req.query.title,
@@ -37,6 +39,17 @@ app.get('/api/bug/save', (req, res) => {
 
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
+
+    const visitedBugs = req.cookies.visitedBugs || []
+    if (visitedBugs.length >= 3) {
+        return res.status(401).send('Wait for a bit')
+    } else if (!visitedBugs.includes(bugId)) {
+        visitedBugs.push(bugId)
+    }
+    res.cookie('visitedBugs', visitedBugs, { maxAge: 7 * 1000 })
+    console.log(`User visited at the following bugs: [${visitedBugs}]`)
+
+
     bugService.getById(bugId)
         .then(bug => res.send(bug))
         .catch(err => {
@@ -44,6 +57,7 @@ app.get('/api/bug/:bugId', (req, res) => {
             res.status(500).send('cannot load bug')
         })
 })
+
 
 app.get('/api/bug/:bugId/remove', (req, res) => {
     const { bugId } = req.params
