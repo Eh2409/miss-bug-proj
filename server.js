@@ -31,7 +31,7 @@ app.get('/api/bug/save', (req, res) => {
 
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
-    bugService.get(bugId)
+    bugService.getById(bugId)
         .then(bug => res.send(bug))
         .catch(err => {
             res.status(500).send('cannot find bug')

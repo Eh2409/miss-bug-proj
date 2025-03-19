@@ -14,9 +14,9 @@ function query() {
     return Promise.resolve(bugs)
 }
 
-function get(bugId) {
+function getById(bugId) {
     const bug = bugs.find(bug => bug._id === bugId)
-    if (bug === -1) return Promise.reject('cannot find bug - ' + bugId)
+    if (!bug) return Promise.reject('cannot find bug - ' + bugId)
     return Promise.resolve(bug)
 }
 function remove(bugId) {
