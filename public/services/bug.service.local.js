@@ -11,24 +11,12 @@ export const bugService = {
     getById,
     save,
     remove,
-    getDefaultFilter
+    getDefaultFilter,
+    getFilterFromSearchParams
 }
 
-function query(filterBy) {
+function query() {
     return axios.get(BASE_URL).then(res => res.data)
-        .then(bugs => {
-
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                bugs = bugs.filter(bug => regExp.test(bug.title))
-            }
-
-            if (filterBy.minSeverity) {
-                bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
-            }
-
-            return bugs
-        })
 }
 
 function getById(bugId) {
@@ -79,5 +67,17 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return { txt: '', minSeverity: '' }
+}
+
+function getFilterFromSearchParams(searchParams) {
+
+    const defaultFilterBy = { ...getDefaultFilter() }
+    const filterBy = {}
+
+    for (const field in defaultFilterBy) {
+        filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
+    }
+
+    return filterBy
 }

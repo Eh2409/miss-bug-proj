@@ -12,8 +12,23 @@ app.use(express.static('public'))
 app.get('/', (req, res) => res.send('Hello there'))
 
 app.get('/api/bug', (req, res) => {
+
+    const filterBy = { txt: req.query.txt, minSeverity: +req.query.minSeverity }
+
     bugService.query()
-        .then(bugs => res.send(bugs))
+        .then(bugs => {
+
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                bugs = bugs.filter(bug => regExp.test(bug.title))
+            }
+
+            if (filterBy.minSeverity) {
+                bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
+            }
+
+            res.send(bugs)
+        })
         .catch(err => {
             loggerService.error('cannot load bugs', err)
             res.status(500).send('cannot load bugs')

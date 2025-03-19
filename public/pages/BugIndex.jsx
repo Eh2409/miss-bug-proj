@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+const { useSearchParams } = ReactRouterDOM
 
 import { bugService } from '../services/bug.service.local.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -8,9 +9,14 @@ import { BugList } from '../cmps/BugList.jsx'
 
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
-    const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
 
-    useEffect(loadBugs, [filterBy])
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState({ ...bugService.getFilterFromSearchParams(searchParams) })
+
+    useEffect(() => {
+        setSearchParams(filterBy)
+        loadBugs()
+    }, [filterBy])
 
     function loadBugs() {
         bugService.query(filterBy)
