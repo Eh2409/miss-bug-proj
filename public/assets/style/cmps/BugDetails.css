@@ -3,8 +3,16 @@
     font-size: 1.1em;
 }
 
-.bug-details h5 span{
+.bug-details h5 span {
     color: red;
+}
+
+.bug-details p {
+    font-weight: bold;
+}
+
+.bug-details p>span {
+    font-weight: normal;
 }
 
 .bug-details hr {
