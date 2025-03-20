@@ -43,7 +43,7 @@ app.get('/api/bug/save', (req, res) => {
         title: req.query.title,
         description: req.query.description,
         severity: +req.query.severity,
-        createdAt: Date.now()
+        createdAt: +req.query.createdAt,
     }
 
     bugService.save(bugToSave)
