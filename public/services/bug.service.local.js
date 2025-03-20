@@ -2,7 +2,6 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const STORAGE_KEY = 'bugs'
-const BASE_URL = '/api/bug/'
 
 _createBugs()
 
@@ -11,34 +10,41 @@ export const bugService = {
     getById,
     save,
     remove,
-    getDefaultFilter,
-    getFilterFromSearchParams
+    getDefaultFilter
 }
 
 function query(filterBy) {
-    const { txt, minSeverity } = filterBy
-    const queryParams = `?txt=${txt}&minSeverity=${minSeverity}`
+    return storageService.query(STORAGE_KEY)
+        .then(bugs => {
 
-    return axios.get(BASE_URL + queryParams).then(res => res.data)
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                bugs = bugs.filter(bug => regExp.test(bug.title))
+            }
+
+            if (filterBy.minSeverity) {
+                bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
+            }
+
+            return bugs
+        })
 }
 
 function getById(bugId) {
-    return axios.get(BASE_URL + bugId).then(res => res.data)
+    return storageService.get(STORAGE_KEY, bugId)
 }
 
 function remove(bugId) {
-    return axios.get(BASE_URL + bugId + '/remove').then(res => res.data)
+    return storageService.remove(STORAGE_KEY, bugId)
 }
 
 function save(bug) {
-    console.log('bug:', bug)
-    const { title, description, severity, createdAt } = bug
-    const url = BASE_URL + 'save'
-    var queryParmas = `?title=${title}&description=${description}&severity=${severity}&createdAt=${createdAt}`
-    if (bug._id) queryParmas += `&_id=${bug._id}`
-    return axios.get(url + queryParmas).then(res => res.data)
+    if (bug._id) {
+        return storageService.put(STORAGE_KEY, bug)
+    } else {
+        return storageService.post(STORAGE_KEY, bug)
+    }
 }
-
 
 function _createBugs() {
     let bugs = utilService.loadFromStorage(STORAGE_KEY)
@@ -70,17 +76,5 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: '' }
-}
-
-function getFilterFromSearchParams(searchParams) {
-
-    const defaultFilterBy = { ...getDefaultFilter() }
-    const filterBy = {}
-
-    for (const field in defaultFilterBy) {
-        filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
-    }
-
-    return filterBy
+    return { txt: '', minSeverity: 0 }
 }

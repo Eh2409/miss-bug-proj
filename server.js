@@ -1,4 +1,4 @@
-import { bugService } from './services/bugService.js'
+import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 
 import express from 'express'
