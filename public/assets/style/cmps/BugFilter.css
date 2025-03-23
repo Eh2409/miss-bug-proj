@@ -1,13 +1,34 @@
 .bug-filter {
-    background-color: var(--gray2);
+    background-color: var(--bg2);
+    color: var(--color3);
+    border-radius: 0.2em;
     padding: 1em;
+    text-align: center;
 }
 
 .bug-filter h2 {
     margin-bottom: .5em;
 }
 
-.bug-filter label {
-    margin-inline-start: 1em;
+.bug-filter form {
+    display: grid;
+    grid-template-columns: repeat(2 1fr);
+    gap: 0.5em;
 }
 
+.bug-filter label {
+    grid-column: 1;
+    text-align: start;
+    margin-inline-start: 1em;
+
+}
+
+.bug-filter input {
+    grid-column: 2;
+}
+
+@media (min-width: 800px) {
+    .bug-filter form {
+        display: block;
+    }
+}

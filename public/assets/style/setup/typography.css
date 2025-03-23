@@ -1,0 +1,26 @@
+@font-face {
+    font-family: PixelifySans;
+    src: url('../../../typography/PixelifySans/PixelifySans-Regular.ttf');
+}
+
+@font-face {
+    font-family: PixelifySans;
+    src: url('../../../typography/PixelifySans/PixelifySans-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Orbitron;
+    src: url('../../../typography/Orbitron/Orbitron-Regular.ttf');
+}
+
+@font-face {
+    font-family: Orbitron;
+    src: url('../../../typography/Orbitron/Orbitron-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: PressStart2P;
+    src: url('../../../typography/PressStart2P/PressStart2P-Regular.ttf');
+}

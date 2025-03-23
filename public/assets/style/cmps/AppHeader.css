@@ -1,35 +1,142 @@
 .app-header {
-    padding-block: 1em;
-    background-color: var(--gray1);
-    color: whitesmoke;
+    position: relative;
+    padding-block: 1.7em;
+    color: var(--bg3);
+    font-weight: bold;
 }
 
-.app-header > * {
+.app-header>* {
     align-items: center;
     grid-row: 1;
 }
 
-.app-header h1 {
-    margin: 0;
-    justify-self: start;
-}
-
-.app-header nav {
-    display: flex;
-    gap: 1em;
-    justify-self: end;
-}
-
-.app-header nav a {
-    border-block-end: 1px solid transparent;
+.app-header a {
     text-decoration: none;
 }
 
+.app-header .main-logo {
+    display: flex;
+    align-items: center;
+
+    justify-self: start;
+    font-size: 1.5em;
+}
+
+.app-header .main-logo>.bug-img-logo {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
+
+.app-header nav a {
+    border-block-end: 3px solid transparent;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
 .app-header nav a:hover {
-    text-decoration: overline;
+    filter: brightness(1.8);
 }
 
 .app-header nav a.active {
-    color: var(--color3);
-    border-block-end: 1px solid var(--color3);
+    color: var(--color2);
+    border-block-end: 3px solid var(--color2);
+}
+
+
+@media (max-width: 800px) {
+    .app-header nav {
+        grid-row: 2;
+        border-radius: 1em;
+        background-color: rgba(4, 98, 59, 0.5);
+
+        display: grid;
+        grid-template-rows: 0fr;
+        place-content: center;
+
+        overflow: hidden;
+        transition: 0.3s ease-out;
+    }
+
+    .app-header nav.active {
+        grid-template-rows: 1fr;
+        padding: 0.5em;
+        margin-block-start: 1em;
+    }
+
+    .app-header nav>* {
+        overflow: hidden;
+        display: grid;
+    }
+
+    .menu-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        font-size: 1.5em;
+        aspect-ratio: 1/1;
+        justify-self: end;
+    }
+
+
+}
+
+@media (min-width: 800px) {
+
+    .app-header .main-logo {
+        font-size: 2.5em;
+        cursor: pointer;
+
+        &:hover {
+            animation: glitch 1s infinite;
+        }
+    }
+
+    .app-header nav {
+        gap: 1.5em;
+    }
+
+    .app-header nav {
+        justify-self: end;
+    }
+
+    .app-header nav>div {
+        display: flex;
+        gap: 1em;
+    }
+
+    .app-header nav a:hover {
+        animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+        10% {
+            text-shadow: 0px 0px 0px #946491;
+            filter: blur(0px);
+        }
+
+        20% {
+            text-shadow: -4px 0px 0px #946491;
+            filter: blur(0.5px);
+        }
+
+        40% {
+            text-shadow: 0px 0px 0px #946491;
+            filter: blur(0px);
+        }
+
+        50% {
+            text-shadow: 4px 0px 0px #71b6ee;
+            filter: blur(0.5px);
+        }
+
+        70% {
+            text-shadow: 0px 0px 0px #71b6ee;
+            filter: blur(0px);
+        }
+    }
+
+    .menu-btn {
+        display: none;
+    }
 }

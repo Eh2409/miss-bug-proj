@@ -2,6 +2,7 @@
 @import './setup/vars.css';
 @import './setup/base.css';
 @import './setup/layout.css';
+@import './setup/typography.css';
 
 @import './cmps/Home.css';
 @import './cmps/AboutUs.css';
