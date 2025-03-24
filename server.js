@@ -4,12 +4,14 @@ import { loggerService } from './services/logger.service.js'
 import express from 'express'
 const app = express()
 
+app.use(express.static('public'))
+
 import cookieParser from 'cookie-parser'
 app.use(cookieParser())
 
-app.use(express.static('public'))
+app.use(express.json())
 
-app.get('/', (req, res) => res.send('Hello there'))
+// app.get('/', (req, res) => res.send('Hello there'))
 
 app.get('/api/bug', (req, res) => {
 
@@ -76,7 +78,7 @@ app.get('/api/bug/:bugId', (req, res) => {
 })
 
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
     bugService.remove(bugId)
         .then(() => res.send('bug removed'))

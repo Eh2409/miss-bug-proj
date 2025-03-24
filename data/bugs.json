@@ -14,13 +14,6 @@
         "createdAt": 1742668435305
     },
     {
-        "_id": "rrdv4b",
-        "title": "Bug 1742513083943",
-        "description": "cannot",
-        "severity": 3,
-        "createdAt": 1742513086427
-    },
-    {
         "_id": "SOg3Wh",
         "title": "Bug 1742507664839",
         "description": "cannot",
@@ -47,12 +40,5 @@
         "description": "Problem when clicking car detils",
         "severity": 4,
         "createdAt": 1542127359454
-    },
-    {
-        "_id": "jkl012",
-        "title": "Cannot remove car",
-        "description": "Problem when clicking remove car",
-        "severity": 1,
-        "createdAt": 1542137359454
     }
 ]

@@ -22,7 +22,7 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    return axios.get(BASE_URL + bugId + '/remove').then(res => res.data)
+    return axios.delete(BASE_URL + bugId).then(res => res.data)
 }
 
 function save(bug) {
