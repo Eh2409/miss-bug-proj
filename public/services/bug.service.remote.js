@@ -26,12 +26,19 @@ function remove(bugId) {
 }
 
 function save(bug) {
-    console.log('bug:', bug)
-    const { title, description, severity, createdAt } = bug
-    const url = BASE_URL + 'save'
-    var queryParmas = `?title=${title}&description=${description}&severity=${severity}&createdAt=${createdAt}`
-    if (bug._id) queryParmas += `&_id=${bug._id}`
-    return axios.get(url + queryParmas).then(res => res.data)
+    if (bug._id) {
+        return axios.put(BASE_URL + bug._id, bug).then(res => res.data)
+            .catch(err => {
+                console.log(err)
+                throw err
+            })
+    } else {
+        return axios.post(BASE_URL, bug).then(res => res.data)
+            .catch(err => {
+                console.log(err)
+                throw err
+            })
+    }
 }
 
 

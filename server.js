@@ -39,20 +39,25 @@ app.get('/api/bug', (req, res) => {
         })
 })
 
-app.get('/api/bug/save', (req, res) => {
-    const bugToSave = {
-        _id: req.query._id,
-        title: req.query.title,
-        description: req.query.description,
-        severity: +req.query.severity,
-        createdAt: +req.query.createdAt,
-    }
+app.post('/api/bug', (req, res) => {
+    const bugToSave = req.body
 
     bugService.save(bugToSave)
         .then(bug => res.send(bug))
         .catch(err => {
-            loggerService.error('cannot save bug', err)
-            res.status(500).send('cannot save bug')
+            loggerService.error('cannot add bug', err)
+            res.status(500).send('cannot add bug')
+        })
+})
+
+app.put('/api/bug/:bugId', (req, res) => {
+    const bugToSave = req.body
+
+    bugService.save(bugToSave)
+        .then(bug => res.send(bug))
+        .catch(err => {
+            loggerService.error('cannot update bug', err)
+            res.status(500).send('cannot update bug')
         })
 })
 
