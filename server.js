@@ -1,7 +1,9 @@
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 
+import path from 'path'
 import express from 'express'
+
 const app = express()
 
 app.use(express.static('public'))
@@ -83,6 +85,10 @@ app.delete('/api/bug/:bugId', (req, res) => {
             loggerService.error('cannot remove bug', err)
             res.status(500).send('cannot remove bug')
         })
+})
+
+app.get('/**', (req, res) => {
+    res.sendFile(path.resolve('public/index.html'))
 })
 
 
