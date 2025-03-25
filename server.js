@@ -15,24 +15,15 @@ app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
 
-    console.log(req.query)
+    console.log(req.query);
 
-    const filterBy = { txt: req.query.txt, minSeverity: +req.query.minSeverity }
+    const filterBy = {
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+    }
 
-    bugService.query()
-        .then(bugs => {
-
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                bugs = bugs.filter(bug => regExp.test(bug.title))
-            }
-
-            if (filterBy.minSeverity) {
-                bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
-            }
-
-            res.send(bugs)
-        })
+    bugService.query(filterBy)
+        .then(bugs => res.send(bugs))
         .catch(err => {
             loggerService.error('cannot load bugs', err)
             res.status(500).send('cannot load bugs')
