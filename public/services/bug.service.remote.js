@@ -41,7 +41,7 @@ function save(bug) {
 
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: '' }
+    return { txt: '', minSeverity: '', pageIdx: undefined }
 }
 
 function getFilterFromSearchParams(searchParams) {
@@ -50,7 +50,13 @@ function getFilterFromSearchParams(searchParams) {
     const filterBy = {}
 
     for (const field in defaultFilterBy) {
-        filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
+        if (field === 'pageIdx') {
+            const pageIdxRes = searchParams.get(`pageIdx`) || defaultFilterBy[field]
+            filterBy.pageIdx = (pageIdxRes !== 'undefined') ? pageIdxRes : defaultFilterBy[field]
+        }
+        else {
+            filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
+        }
     }
 
     return filterBy

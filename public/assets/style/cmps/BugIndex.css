@@ -6,3 +6,29 @@
     padding-block: 1em;
     border-block-end: 1px solid var(--bg3);
 }
+
+.bug-index .pagination-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1em;
+}
+
+
+@media (min-width: 800px) {
+    .bug-index .pagination-container {
+        display: grid;
+        grid-template-columns: max-content 1fr 200px;
+        align-items: center;
+    }
+
+    .bug-index .pagination-container label {
+        grid-area: 1/1;
+    }
+
+    .bug-index .pagination-container .pagination-btns {
+        grid-area: 1/2;
+        place-self: center;
+    }
+
+}

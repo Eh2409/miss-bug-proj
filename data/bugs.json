@@ -1,65 +1,37 @@
 [
     {
-        "title": "Bug 1742853809272",
-        "description": "cannot",
-        "severity": 124,
-        "_id": "fbskLl",
-        "createdAt": 1742853811284
+      "_id": "abc123",
+      "title": "Cannot save a new car",
+      "description": "Problem when clicking Save",
+      "severity": 3,
+      "createdAt": 1542107359454
     },
     {
-        "title": "Bug 1742852691672",
-        "description": "cannot",
-        "severity": 0,
-        "_id": "1olgSW",
-        "createdAt": 1742852693477
+      "_id": "def456",
+      "title": "Cannot load cars",
+      "description": "Problem when loading cars",
+      "severity": 2,
+      "createdAt": 1542117359454
     },
     {
-        "title": "Bug 1742852323218",
-        "description": "cannot",
-        "severity": 3,
-        "createdAt": 1742852325101,
-        "_id": "KdkpNt"
+      "_id": "ghi789",
+      "title": "Cannot read car",
+      "description": "Problem when clicking car detils",
+      "severity": 4,
+      "createdAt": 1542127359454
     },
     {
-        "_id": "zFguW2",
-        "title": "Bug 1742668438430",
-        "description": "cannot",
-        "severity": 3,
-        "createdAt": 1742668440321
+      "_id": "jkl012",
+      "title": "Cannot remove car",
+      "description": "Problem when clicking remove car",
+      "severity": 1,
+      "createdAt": 1542137359454
     },
     {
-        "_id": "0bQAIV",
-        "title": "Bug 1742668433198",
-        "description": "cannot",
-        "severity": 3,
-        "createdAt": 1742668435305
-    },
-    {
-        "_id": "SOg3Wh",
-        "title": "Bug 1742507664839",
-        "description": "cannot",
-        "severity": 3,
-        "createdAt": 1742507666913
-    },
-    {
-        "_id": "abc123",
-        "title": "Cannot save a new car",
-        "description": "Problem when clicking Save",
-        "severity": 3,
-        "createdAt": 1542107359454
-    },
-    {
-        "_id": "def456",
-        "title": "Cannot load cars",
-        "description": "Problem when loading cars",
-        "severity": 2,
-        "createdAt": 1542117359454
-    },
-    {
-        "_id": "ghi789",
-        "title": "Cannot read car",
-        "description": "Problem when clicking car detils",
-        "severity": 4,
-        "createdAt": 1542127359454
+      "_id": "mno345",
+      "title": "Cannot save edit car",
+      "description": "Problem when clicking Save",
+      "severity": 5,
+      "createdAt": 1542147359454
     }
-]
+  ]

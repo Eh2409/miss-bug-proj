@@ -15,11 +15,12 @@ app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
 
-    console.log(req.query);
+    console.log('serever ', req.query.pageIdx);
 
     const filterBy = {
         txt: req.query.txt || '',
         minSeverity: +req.query.minSeverity || 0,
+        pageIdx: (req.query.pageIdx !== undefined) ? +req.query.pageIdx : undefined
     }
 
     bugService.query(filterBy)

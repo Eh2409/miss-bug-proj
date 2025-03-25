@@ -10,6 +10,7 @@ import { BugList } from '../cmps/BugList.jsx'
 
 export function BugIndex() {
     const [bugs, setBugs] = useState(null)
+    const [maxPageCount, setMaxPageCountBugs] = useState(null)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState({ ...bugService.getFilterFromSearchParams(searchParams) })
@@ -21,7 +22,10 @@ export function BugIndex() {
 
     function loadBugs() {
         bugService.query(filterBy)
-            .then(setBugs)
+            .then(res => {
+                setBugs(res.bugs)
+                setMaxPageCountBugs(res.maxPageCount)
+            })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
     }
 
@@ -69,6 +73,15 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onSetPage(diff) {
+        setFilterBy(prevFilter => ({ ...prevFilter, pageIdx: +prevFilter.pageIdx + diff }))
+    }
+
+    function onSetPageNumber(pageNum) {
+        setFilterBy(prevFilter => ({ ...prevFilter, pageIdx: pageNum }))
+    }
+
+
     return <section className="bug-index main-content">
 
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
@@ -81,5 +94,39 @@ export function BugIndex() {
             bugs={bugs}
             onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />
-    </section>
+
+        <div className='pagination-container'>
+
+            <label htmlFor="use-pagination">
+                use pagination
+                <input type="checkbox" id="use-pagination"
+                    checked={filterBy.pageIdx !== undefined ? true : false}
+                    onChange={(event) => {
+                        setFilterBy(prevFilter => ({ ...prevFilter, pageIdx: (event.target.checked) ? 0 : undefined }))
+                    }} />
+            </label>
+
+            {filterBy.pageIdx !== undefined &&
+                <div className='pagination-btns'>
+                    <button disabled={filterBy.pageIdx <= 0} onClick={() => onSetPage(-1)}>Prev page</button>
+
+                    {maxPageCount >
+                        0 && Array.from({ length: maxPageCount })
+                            .map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => onSetPageNumber(idx)}
+                                    className={+filterBy.pageIdx === idx ? "active" : ""}
+                                >
+                                    {idx + 1}
+                                </button>
+                            ))}
+
+                    <button disabled={filterBy.pageIdx >= maxPageCount - 1} onClick={() => onSetPage(1)}>Next page</button>
+                </div>
+            }
+
+        </div>
+
+    </section >
 }

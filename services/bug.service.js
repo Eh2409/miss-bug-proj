@@ -10,6 +10,8 @@ export const bugService = {
 
 const bugs = utilService.readJsonFile('data/bugs.json')
 
+const PAGE_SIZE = 4
+
 function query(filterBy) {
 
     console.log(filterBy);
@@ -26,7 +28,15 @@ function query(filterBy) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
             }
 
-            return bugs
+
+            const maxPageCount = Math.ceil(bugs.length / PAGE_SIZE)
+
+            if (filterBy.pageIdx !== undefined) {
+                const startIdx = filterBy.pageIdx * PAGE_SIZE
+                bugs = bugs.slice(startIdx, startIdx + PAGE_SIZE)
+            }
+
+            return { bugs, maxPageCount }
         })
 }
 

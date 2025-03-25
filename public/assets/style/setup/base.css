@@ -17,13 +17,23 @@ button {
     background-color: var(--bg3);
     color: whitesmoke;
     cursor: pointer;
-    transition: filter .5s;
+    transition: filter .2s;
     font-size: 1em;
 }
 
+button.active,
 button:hover {
     color: var(--color2);
-    filter: brightness(1.4);
+    filter: brightness(1.5);
+}
+
+button:disabled {
+    color: black;
+    cursor: auto;
+
+    &:hover {
+        filter: brightness(1);
+    }
 }
 
 hr {
