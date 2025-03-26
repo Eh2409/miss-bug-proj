@@ -4,34 +4,39 @@
     "title": "Cannot save a new car",
     "description": "Problem when clicking Save",
     "severity": 3,
-    "createdAt": 1542107359454
+    "createdAt": 1542107359454,
+    "labels" : "['dev-branch']"
   },
   {
     "_id": "def456",
     "title": "Cannot load cars",
     "description": "Problem when loading cars",
     "severity": 2,
-    "createdAt": 1542117359454
+    "createdAt": 1542117359454,
+    "labels" : "[ 'need-CR']"
   },
   {
     "_id": "ghi789",
     "title": "Cannot read car",
     "description": "Problem when clicking car detils",
     "severity": 4,
-    "createdAt": 1542127359454
+    "createdAt": 1542127359454,
+    "labels" : "['critical']"
   },
   {
     "_id": "jkl012",
     "title": "Cannot remove car",
     "description": "Problem when clicking remove car",
     "severity": 1,
-    "createdAt": 1542137359454
+    "createdAt": 1542137359454,
+    "labels" : "['critical', 'need-CR']"
   },
   {
     "_id": "mno345",
     "title": "Cannot save edit car",
     "description": "Problem when clicking Save",
     "severity": 5,
-    "createdAt": 1542147359454
+    "createdAt": 1542147359454,
+    "labels" : "['critical','dev-branch']"
   }
 ]

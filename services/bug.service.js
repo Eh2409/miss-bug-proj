@@ -28,6 +28,12 @@ function query(filterBy, sortBy) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
             }
 
+            if (filterBy.labels) {
+                bugs = bugs.filter(bug =>
+                    bug.labels.some(label => filterBy.labels.includes(label))
+                )
+            }
+
             if (sortBy) {
                 if (sortBy.sortType === 'title') {
                     bugs = bugs.sort((b1, b2) => b1.title.localeCompare(b2.title))

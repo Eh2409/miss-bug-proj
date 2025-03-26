@@ -45,7 +45,8 @@ export function BugIndex() {
         const bug = {
             title: prompt('Bug title?', 'Bug ' + Date.now()),
             description: prompt('Bug description?', 'cannot'),
-            severity: +prompt('Bug severity?', 3)
+            severity: +prompt('Bug severity?', 3),
+            labels: []
         }
 
         bugService.save(bug)
@@ -72,7 +73,7 @@ export function BugIndex() {
     }
 
     function onSetFilterBy(filterBy) {
-        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+        setFilterBy(prevFilter => ({ ...filterBy, pageIdx: prevFilter.pageIdx }))
     }
 
     function onSetPage(diff) {

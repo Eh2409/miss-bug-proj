@@ -43,7 +43,7 @@ function save(bug) {
 
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: '', pageIdx: undefined }
+    return { txt: '', minSeverity: '', labels: [], pageIdx: undefined }
 }
 
 function getDefaultSort() {
@@ -60,12 +60,14 @@ function getFilterFromSearchParams(searchParams) {
         if (field === 'pageIdx') {
             const pageIdxRes = searchParams.get(`pageIdx`) || defaultFilterBy[field]
             filterBy.pageIdx = (pageIdxRes !== 'undefined') ? pageIdxRes : defaultFilterBy[field]
-        }
-        else {
+        } else if (field === 'labels') {
+            filterBy[field] = searchParams.getAll('labels') || defaultFilterBy[field]
+        } else {
             filterBy[field] = searchParams.get(`${field}`) || defaultFilterBy[field]
         }
     }
 
+    console.log('filterBy:', filterBy)
     return filterBy
 }
 

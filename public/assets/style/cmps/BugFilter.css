@@ -12,10 +12,11 @@
 
 .bug-filter form {
     display: grid;
-    grid-template-columns: repeat(2 1fr);
+    grid-template-columns: max-content 1fr;
     gap: 0.5em;
 }
 
+.bug-filter .labels-title,
 .bug-filter label {
     grid-column: 1;
     text-align: start;
@@ -23,12 +24,14 @@
 
 }
 
+.bug-filter .labels-picker,
 .bug-filter input {
     grid-column: 2;
 }
 
-@media (min-width: 800px) {
+
+/* @media (min-width: 800px) {
     .bug-filter form {
         display: block;
     }
-}
+} */

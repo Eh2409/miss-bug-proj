@@ -1,12 +1,15 @@
 import { utilService } from "../services/util.service.js"
+import { BugLabelsPicker } from "./BugLabelsPicker.jsx"
 
 
 const { useState, useEffect, useRef } = React
 
 export function BugFilter({ filterBy, onSetFilterBy }) {
 
+
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
     const filterDebounce = useRef(utilService.debounce(onSetFilterBy, 500))
+
 
     useEffect(() => {
         filterDebounce.current(filterByToEdit)
@@ -38,7 +41,11 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt, minSeverity } = filterByToEdit
+    function onSaveLabels(labelsPicked) {
+        setFilterByToEdit(prev => ({ ...prev, labels: labelsPicked }))
+    }
+
+    const { txt, minSeverity, labels } = filterByToEdit
     return (
         <section className="bug-filter">
             <h2>Filter</h2>
@@ -48,7 +55,12 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
 
                 <label htmlFor="minSeverity">Min Severity : </label>
                 <input value={minSeverity || ''} onChange={handleChange} type="number" placeholder="By Min Severity" id="minSeverity" name="minSeverity" />
+
+                <div className="labels-title">Labels : </div>
+                <BugLabelsPicker labels={labels} onSaveLabels={onSaveLabels} />
+
             </form>
-        </section>
+        </section >
     )
 }
+
