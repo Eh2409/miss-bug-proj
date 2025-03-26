@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { useSearchParams } = ReactRouterDOM
+const { useSearchParams, Link } = ReactRouterDOM
 
 import { bugService } from '../services/bug.service.remote.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -16,6 +16,7 @@ export function BugIndex() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState({ ...bugService.getFilterFromSearchParams(searchParams) })
     const [sortBy, setSortBy] = useState({ ...bugService.getSortFromSearchParams(searchParams) })
+
 
     useEffect(() => {
         setSearchParams({ ...filterBy, ...sortBy })
@@ -39,22 +40,6 @@ export function BugIndex() {
                 showSuccessMsg('Bug removed')
             })
             .catch((err) => showErrorMsg(`Cannot remove bug`, err))
-    }
-
-    function onAddBug() {
-        const bug = {
-            title: prompt('Bug title?', 'Bug ' + Date.now()),
-            description: prompt('Bug description?', 'cannot'),
-            severity: +prompt('Bug severity?', 3),
-            labels: []
-        }
-
-        bugService.save(bug)
-            .then(savedBug => {
-                setBugs([savedBug, ...bugs])
-                showSuccessMsg('Bug added')
-            })
-            .catch(err => showErrorMsg(`Cannot add bug`, err))
     }
 
     function onEditBug(bug) {
@@ -94,7 +79,7 @@ export function BugIndex() {
         <header>
             <h3>Bug List</h3>
             <BugSort sortBy={sortBy} onSetSortBy={onSetSortBy} />
-            <button onClick={onAddBug}>Add Bug</button>
+            <Link to='/bug/compose'><button>Add Bug</button></Link>
         </header>
 
         <BugList

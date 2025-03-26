@@ -10,6 +10,7 @@ export const bugService = {
     getFilterFromSearchParams,
     getDefaultSort,
     getSortFromSearchParams,
+    getEmpyBug,
 }
 
 function query(filterBy, sortBy) {
@@ -26,19 +27,28 @@ function remove(bugId) {
 }
 
 function save(bug) {
-    if (bug._id) {
-        return axios.put(BASE_URL + bug._id, bug).then(res => res.data)
-            .catch(err => {
-                console.log(err)
-                throw err
-            })
-    } else {
-        return axios.post(BASE_URL, bug).then(res => res.data)
-            .catch(err => {
-                console.log(err)
-                throw err
-            })
-    }
+
+    const method = bug._id ? 'put' : 'post'
+
+    return axios[method](BASE_URL, bug).then(res => res.data)
+        .catch(err => {
+            console.log(err)
+            throw err
+        })
+
+    //     if (bug._id) {
+    //         return axios.put(BASE_URL, bug).then(res => res.data)
+    //             .catch(err => {
+    //                 console.log(err)
+    //                 throw err
+    //             })
+    //     } else {
+    //         return axios.post(BASE_URL, bug).then(res => res.data)
+    //             .catch(err => {
+    //                 console.log(err)
+    //                 throw err
+    //             })
+    //     }
 }
 
 
@@ -48,6 +58,15 @@ function getDefaultFilter() {
 
 function getDefaultSort() {
     return { sortType: 'createdAt', sortDir: -1 }
+}
+
+function getEmpyBug() {
+    return {
+        title: '',
+        description: '',
+        severity: 0,
+        labels: [],
+    }
 }
 
 

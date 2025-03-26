@@ -50,7 +50,7 @@ app.post('/api/bug', (req, res) => {
         })
 })
 
-app.put('/api/bug/:bugId', (req, res) => {
+app.put('/api/bug', (req, res) => {
     const bugToSave = req.body
 
     bugService.save(bugToSave)

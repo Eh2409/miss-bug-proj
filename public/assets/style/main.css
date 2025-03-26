@@ -8,6 +8,7 @@
 @import './cmps/AboutUs.css';
 @import './cmps/BugIndex.css';
 @import './cmps/BugDetails.css';
+@import './cmps/BugCompose.css';
 
 @import './cmps/AppHeader.css';
 @import './cmps/AppFooter.css';

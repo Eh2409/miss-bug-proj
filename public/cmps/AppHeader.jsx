@@ -14,16 +14,16 @@ export function AppHeader() {
     return <header className="app-header main-content single-row">
         <Link to="/" onClick={onCloseNav}>
             <div className="main-logo">
-                <img src="assets/img/bug.png" className="bug-img-logo" />
+                <img src="/assets/img/bug.png" className="bug-img-logo" />
                 <span>Miss Bug</span>
             </div>
         </Link>
 
         <button className="menu-btn" onClick={() => (setIsMenuOpen(!isMenuOpen))}>
             {isMenuOpen ?
-                <img src="assets/img/x.png" />
+                <img src="/assets/img/x.png" />
                 :
-                <img src="assets/img/bars.png" />
+                <img src="/assets/img/bars.png" />
             }
         </button>
 
