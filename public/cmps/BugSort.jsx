@@ -3,8 +3,6 @@ const { useState, useEffect, useRef } = React
 export function BugSort({ sortBy, onSetSortBy }) {
 
     const [editSortBy, setEditSortBy] = useState({ ...sortBy })
-    console.log('Here:', editSortBy)
-
 
     useEffect(() => {
         onSetSortBy(editSortBy)

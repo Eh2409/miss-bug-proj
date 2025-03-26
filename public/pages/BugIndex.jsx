@@ -85,7 +85,7 @@ export function BugIndex() {
         <BugList
             bugs={bugs}
             onRemoveBug={onRemoveBug}
-            onEditBug={onEditBug} />
+        />
 
         <div className='pagination-container'>
 

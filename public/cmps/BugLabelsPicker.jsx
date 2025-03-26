@@ -1,6 +1,6 @@
 const { useState, useEffect, useRef } = React
 
-export function BugLabelsPicker({ labels, onSaveLabels }) {
+export function BugLabelsPicker({ labels, onSaveLabels, bugEditLabels = null }) {
 
     const [isLabelPickerOpen, setIsLabelPickerOpen] = useState(false)
     const [labelsPicked, setLabelsPicked] = useState([...labels])
@@ -9,12 +9,18 @@ export function BugLabelsPicker({ labels, onSaveLabels }) {
     const labelsListRef = useRef()
 
     useEffect(() => {
+        if (bugEditLabels) {
+            setLabelsPicked([...bugEditLabels])
+        }
+    }, [bugEditLabels])
+
+    useEffect(() => {
         if (labelsPicked.length > 0) {
             selectBtnTitleRef.current.innerText = `${labelsPicked.length} selected`
         } else {
             selectBtnTitleRef.current.innerText = 'Select Label'
         }
-    }, [])
+    }, [labelsPicked])
 
     useEffect(() => {
         if (isLabelPickerOpen) {
@@ -51,12 +57,6 @@ export function BugLabelsPicker({ labels, onSaveLabels }) {
                 prev = prev.filter(label => label !== name)
             } else {
                 prev = ([name, ...prev])
-            }
-
-            if (prev.length > 0) {
-                selectBtnTitleRef.current.innerText = `${prev.length} selected`
-            } else {
-                selectBtnTitleRef.current.innerText = ' Select Label'
             }
 
             return prev

@@ -86,7 +86,6 @@ function getFilterFromSearchParams(searchParams) {
         }
     }
 
-    console.log('filterBy:', filterBy)
     return filterBy
 }
 

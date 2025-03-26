@@ -2,16 +2,35 @@ import { BugLabelsPicker } from "../cmps/BugLabelsPicker.jsx"
 import { bugService } from "../services/bug.service.remote.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
-
-
 const { useState, useEffect, useRef } = React
-const { useNavigate } = ReactRouterDOM
+const { useNavigate, useParams } = ReactRouterDOM
 
-export function BugCompose(props) {
+export function BugCompose() {
 
     const [bug, setBug] = useState({ ...bugService.getEmpyBug() })
+    const [bugEditLabels, setBugEditLabels] = useState(null)
+    console.log('bug-after-save:', bug)
 
     const navigate = useNavigate()
+    const { bugId } = useParams()
+
+    useEffect(() => {
+        if (bugId) {
+            setBugToEdit(bugId)
+        }
+    }, [bugId])
+
+    function setBugToEdit(bugId) {
+        bugService.getById(bugId)
+            .then(bug => {
+                setBug(bug)
+                setBugEditLabels([...bug.labels])
+            })
+            .catch(err => {
+                showErrorMsg(`Cannot load bug`, err)
+                navigate('/bug')
+            })
+    }
 
     function handleChange({ target }) {
         var { name, value } = target
@@ -26,22 +45,23 @@ export function BugCompose(props) {
 
     function onSaveBug(ev) {
         ev.preventDefault()
+        console.log('bug-save:', bug)
         bugService.save(bug)
             .then(() => {
-                showSuccessMsg('Bug added')
+                showSuccessMsg(bug._id ? 'Bug updated' : 'Bug added')
             })
-            .catch(err => showErrorMsg(`Cannot add bug`, err))
+            .catch(err => showErrorMsg(bug._id ? `Cannot update bug` : `Cannot add bug`, err))
             .finally(() => navigate('/bug'))
     }
 
-    const { title, description, severity, labels } = bug
-
+    const { title, description, severity } = bug
+    console.log('bug.labels:', bug.labels)
 
     return (
         <section className="compose-bug main-content">
 
             <header>
-                <h2>Add Bug</h2>
+                <h2>{bugId ? "Edit Bug" : "Add Bug"}</h2>
                 <button type="button" onClick={() => { navigate('/bug') }}>Back to List</button>
             </header>
 
@@ -53,7 +73,7 @@ export function BugCompose(props) {
                 <label htmlFor="severity">Severity :</label>
                 <input type="number" id="severity" name="severity" value={severity || ''} min={1} max={5} onChange={handleChange} placeholder="Enter bug severity" required />
                 <div>Labels :</div>
-                <BugLabelsPicker labels={labels} onSaveLabels={onSaveLabels} />
+                <BugLabelsPicker labels={bug.labels} onSaveLabels={onSaveLabels} bugEditLabels={bugEditLabels} />
                 <button className="save-btn">Save</button>
             </form>
         </section>

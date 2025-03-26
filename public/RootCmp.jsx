@@ -21,6 +21,7 @@ export function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/bug" element={<BugIndex />} />
                     <Route path="/bug/compose" element={<BugCompose />} />
+                    <Route path="/bug/edit/:bugId" element={<BugCompose />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
                 </Routes>
