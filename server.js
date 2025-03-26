@@ -17,15 +17,20 @@ app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
 
-    console.log('serever ', req.query.pageIdx);
+    console.log('serever ', req.query);
 
     const filterBy = {
         txt: req.query.txt || '',
         minSeverity: +req.query.minSeverity || 0,
-        pageIdx: (req.query.pageIdx !== undefined) ? +req.query.pageIdx : undefined
+        pageIdx: (req.query.pageIdx !== undefined) ? +req.query.pageIdx : undefined,
     }
 
-    bugService.query(filterBy)
+    const sortBy = {
+        sortType: req.query.sortType || '',
+        sortDir: req.query.sortDir || 0,
+    }
+
+    bugService.query(filterBy, sortBy)
         .then(bugs => res.send(bugs))
         .catch(err => {
             loggerService.error('cannot load bugs', err)

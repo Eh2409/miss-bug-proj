@@ -12,9 +12,9 @@ const bugs = utilService.readJsonFile('data/bugs.json')
 
 const PAGE_SIZE = 4
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
 
-    console.log(filterBy);
+    console.log(filterBy, sortBy);
 
     return Promise.resolve(bugs)
         .then(bugs => {
@@ -28,6 +28,15 @@ function query(filterBy) {
                 bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
             }
 
+            if (sortBy) {
+                if (sortBy.sortType === 'title') {
+                    bugs = bugs.sort((b1, b2) => b1.title.localeCompare(b2.title))
+                } else if (sortBy.sortType === 'severity') {
+                    bugs = bugs.sort((b1, b2) => (b1.severity - b2.severity) * sortBy.sortDir)
+                } else if (sortBy.sortType === 'createdAt') {
+                    bugs = bugs.sort((b1, b2) => (b1.createdAt - b2.createdAt) * sortBy.sortDir)
+                }
+            }
 
             const maxPageCount = Math.ceil(bugs.length / PAGE_SIZE)
 

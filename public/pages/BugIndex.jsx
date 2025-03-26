@@ -6,6 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
 import { BugList } from '../cmps/BugList.jsx'
+import { BugSort } from '../cmps/BugSort.jsx'
 
 
 export function BugIndex() {
@@ -14,14 +15,15 @@ export function BugIndex() {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState({ ...bugService.getFilterFromSearchParams(searchParams) })
+    const [sortBy, setSortBy] = useState({ ...bugService.getSortFromSearchParams(searchParams) })
 
     useEffect(() => {
-        setSearchParams(filterBy)
-        loadBugs(filterBy)
-    }, [filterBy])
+        setSearchParams({ ...filterBy, ...sortBy })
+        loadBugs()
+    }, [filterBy, sortBy])
 
     function loadBugs() {
-        bugService.query(filterBy)
+        bugService.query(filterBy, sortBy)
             .then(res => {
                 setBugs(res.bugs)
                 setMaxPageCountBugs(res.maxPageCount)
@@ -81,12 +83,16 @@ export function BugIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, pageIdx: pageNum }))
     }
 
+    function onSetSortBy(editedSortBy) {
+        setSortBy(prev => ({ ...editedSortBy }))
+    }
 
     return <section className="bug-index main-content">
 
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <header>
             <h3>Bug List</h3>
+            <BugSort sortBy={sortBy} onSetSortBy={onSetSortBy} />
             <button onClick={onAddBug}>Add Bug</button>
         </header>
 

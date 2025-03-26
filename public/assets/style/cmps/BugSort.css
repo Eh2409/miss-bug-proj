@@ -1,0 +1,18 @@
+.sort-by-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.sort-by-container label select {
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+@media (min-width: 800px) {
+
+    .sort-by-container {
+        flex-direction: row;
+    }
+}

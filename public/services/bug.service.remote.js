@@ -7,11 +7,13 @@ export const bugService = {
     save,
     remove,
     getDefaultFilter,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    getDefaultSort,
+    getSortFromSearchParams,
 }
 
-function query(filterBy) {
-    return axios.get(BASE_URL, { params: filterBy })
+function query(filterBy, sortBy) {
+    return axios.get(BASE_URL, { params: { ...filterBy, ...sortBy } })
         .then(res => res.data)
 }
 
@@ -44,6 +46,11 @@ function getDefaultFilter() {
     return { txt: '', minSeverity: '', pageIdx: undefined }
 }
 
+function getDefaultSort() {
+    return { sortType: 'createdAt', sortDir: -1 }
+}
+
+
 function getFilterFromSearchParams(searchParams) {
 
     const defaultFilterBy = { ...getDefaultFilter() }
@@ -60,4 +67,16 @@ function getFilterFromSearchParams(searchParams) {
     }
 
     return filterBy
+}
+
+function getSortFromSearchParams(searchParams) {
+
+    const defaultSortBy = { ...getDefaultSort() }
+    const SortBy = {}
+
+    for (const field in defaultSortBy) {
+        SortBy[field] = searchParams.get(`${field}`) || defaultSortBy[field]
+    }
+
+    return SortBy
 }
