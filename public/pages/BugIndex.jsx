@@ -42,21 +42,6 @@ export function BugIndex() {
             .catch((err) => showErrorMsg(`Cannot remove bug`, err))
     }
 
-    function onEditBug(bug) {
-        const severity = +prompt('New severity?', bug.severity)
-        const bugToSave = { ...bug, severity }
-
-        bugService.save(bugToSave)
-            .then(savedBug => {
-                const bugsToUpdate = bugs.map(currBug =>
-                    currBug._id === savedBug._id ? savedBug : currBug)
-
-                setBugs(bugsToUpdate)
-                showSuccessMsg('Bug updated')
-            })
-            .catch(err => showErrorMsg('Cannot update bug', err))
-    }
-
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...filterBy, pageIdx: prevFilter.pageIdx }))
     }
