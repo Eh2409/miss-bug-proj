@@ -13,7 +13,7 @@
     {
         "title": "y",
         "description": "y",
-        "severity": 5,
+        "severity": 1,
         "labels": [
             "critical"
         ],

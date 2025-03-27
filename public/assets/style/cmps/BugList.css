@@ -10,7 +10,7 @@
 .bug-list li {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 2;
+    grid-row: span 3;
 
     gap: 1em;
 
@@ -28,4 +28,24 @@
 
 .bug-list .actions button:last-child {
     margin-inline-start: auto;
+}
+
+.bug-list li.severity1 {
+    background-color: var(--sv1);
+}
+
+.bug-list li.severity2 {
+    background-color: var(--sv2);
+}
+
+.bug-list li.severity3 {
+    background-color: var(--sv3);
+}
+
+.bug-list li.severity4 {
+    background-color: var(--sv4);
+}
+
+.bug-list li.severity5 {
+    background-color: var(--sv5);
 }

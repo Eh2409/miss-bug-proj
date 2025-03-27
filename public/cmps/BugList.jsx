@@ -7,7 +7,7 @@ export function BugList({ bugs, onRemoveBug }) {
     if (!bugs) return <div>Loading...</div>
     return <ul className="bug-list">
         {bugs.map(bug => (
-            <li key={bug._id}>
+            <li key={bug._id} className={`severity${bug.severity}`}>
                 <BugPreview bug={bug} />
                 <section className="actions">
                     <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
