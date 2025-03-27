@@ -15,4 +15,7 @@
 .compose-bug form textarea {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;
+    resize: none;
+    height: auto;
+    min-height: 100px;
 }
