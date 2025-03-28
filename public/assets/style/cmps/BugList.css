@@ -19,6 +19,13 @@
     border-radius: .2em;
 
     color: whitesmoke;
+
+    transition: all .25s;
+
+    &:hover {
+        box-shadow: 0 1px 5px var(--bg3);
+        filter: brightness(1.1);
+    }
 }
 
 .bug-list .actions {
