@@ -43,7 +43,7 @@ export function BugIndex() {
     }
 
     function onSetFilterBy(filterBy) {
-        setFilterBy(prevFilter => ({ ...filterBy, pageIdx: prevFilter.pageIdx }))
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function onSetPage(diff) {
@@ -55,7 +55,7 @@ export function BugIndex() {
     }
 
     function onSetSortBy(editedSortBy) {
-        setSortBy(prev => ({ ...editedSortBy }))
+        setSortBy(prevF => ({ ...editedSortBy }))
     }
 
     return <section className="bug-index main-content">

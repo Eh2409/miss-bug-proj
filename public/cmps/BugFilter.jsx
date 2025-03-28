@@ -10,7 +10,6 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
     const filterDebounce = useRef(utilService.debounce(onSetFilterBy, 500))
 
-
     useEffect(() => {
         filterDebounce.current(filterByToEdit)
     }, [filterByToEdit])
@@ -33,7 +32,11 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
                 break
         }
 
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        setFilterByToEdit(prevFilter => ({
+            ...prevFilter,
+            [field]: value,
+            pageIdx: filterBy.pageIdx >= 0 ? 0 : undefined,
+        }))
     }
 
     function onSubmitFilter(ev) {
@@ -58,7 +61,6 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
 
                 <div className="labels-title">Labels : </div>
                 <BugLabelsPicker labels={labels} onSaveLabels={onSaveLabels} />
-
             </form>
         </section >
     )
