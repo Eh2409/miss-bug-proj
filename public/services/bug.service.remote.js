@@ -27,28 +27,14 @@ function remove(bugId) {
 }
 
 function save(bug) {
-
     const method = bug._id ? 'put' : 'post'
+    const bugId = bug._id || ''
 
-    return axios[method](BASE_URL, bug).then(res => res.data)
+    return axios[method](BASE_URL + bugId, bug).then(res => res.data)
         .catch(err => {
             console.log(err)
             throw err
         })
-
-    //     if (bug._id) {
-    //         return axios.put(BASE_URL, bug).then(res => res.data)
-    //             .catch(err => {
-    //                 console.log(err)
-    //                 throw err
-    //             })
-    //     } else {
-    //         return axios.post(BASE_URL, bug).then(res => res.data)
-    //             .catch(err => {
-    //                 console.log(err)
-    //                 throw err
-    //             })
-    //     }
 }
 
 
