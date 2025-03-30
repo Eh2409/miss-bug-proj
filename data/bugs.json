@@ -1,34 +1,13 @@
 [
     {
-        "title": "y",
-        "description": "y",
-        "severity": 1,
-        "labels": [
-            "critical"
-        ],
-        "_id": "Yxw3Im",
-        "createdAt": 1743032727992
-    },
-    {
-        "title": "56",
-        "description": "546",
-        "severity": 3,
-        "labels": [
-            "need-cr",
-            "critical"
-        ],
-        "_id": "6DXMWO",
-        "createdAt": 1743032645210
-    },
-    {
-        "title": "asdsa",
-        "description": "dsad",
-        "severity": 2,
+        "_id": "mno345",
+        "title": "Cannot save edit car",
+        "description": "Problem when clicking Save",
+        "severity": 5,
+        "createdAt": 1542147359454,
         "labels": [
             "dev-branch"
-        ],
-        "_id": "reHewx",
-        "createdAt": 1743024886561
+        ]
     },
     {
         "_id": "jkl012",
@@ -48,7 +27,7 @@
         "severity": 4,
         "createdAt": 1542127359454,
         "labels": [
-            "critical"
+            "dev-branch"
         ]
     },
     {
@@ -58,7 +37,8 @@
         "severity": 2,
         "createdAt": 1542117359454,
         "labels": [
-            "need-cr"
+            "need-cr",
+            "critical"
         ]
     },
     {
@@ -68,7 +48,7 @@
         "severity": 3,
         "createdAt": 1542107359454,
         "labels": [
-            "dev-branch"
+            "critical"
         ]
     }
 ]

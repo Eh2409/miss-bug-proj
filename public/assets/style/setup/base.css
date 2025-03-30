@@ -2,6 +2,7 @@ body {
     font-family: Orbitron, Arial, sans-serif;
     letter-spacing: 0.08em;
 
+    background-color: var(--bg1);
     background-image: url(./../../img/backgound.png),
         linear-gradient(to right top, #17d280, #7be281, #17d267);
     background-position: center;
@@ -19,6 +20,7 @@ button {
     cursor: pointer;
     transition: filter .2s;
     font-size: 1em;
+    box-shadow: 0 1px 5px var(--bg1);
 }
 
 button.active,

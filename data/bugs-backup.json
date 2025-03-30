@@ -5,7 +5,7 @@
     "description": "Problem when clicking Save",
     "severity": 3,
     "createdAt": 1542107359454,
-    "labels" : "['dev-branch']"
+    "labels": ["critical"]
   },
   {
     "_id": "def456",
@@ -13,7 +13,7 @@
     "description": "Problem when loading cars",
     "severity": 2,
     "createdAt": 1542117359454,
-    "labels" : "[ 'need-CR']"
+    "labels": ["need-cr","critical"]
   },
   {
     "_id": "ghi789",
@@ -21,7 +21,7 @@
     "description": "Problem when clicking car detils",
     "severity": 4,
     "createdAt": 1542127359454,
-    "labels" : "['critical']"
+    "labels": ["dev-branch"]
   },
   {
     "_id": "jkl012",
@@ -29,7 +29,7 @@
     "description": "Problem when clicking remove car",
     "severity": 1,
     "createdAt": 1542137359454,
-    "labels" : "['critical', 'need-CR']"
+    "labels" : ["critical", "need-cr"]
   },
   {
     "_id": "mno345",
@@ -37,6 +37,6 @@
     "description": "Problem when clicking Save",
     "severity": 5,
     "createdAt": 1542147359454,
-    "labels" : "['critical','dev-branch']"
+    "labels": ["dev-branch"]
   }
 ]

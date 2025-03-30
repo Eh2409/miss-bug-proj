@@ -12,18 +12,19 @@
     grid-template-rows: subgrid;
     grid-row: span 3;
 
-    gap: 1em;
+    gap: 0.5em;
 
     padding: .7em;
     background-color: var(--bg2);
     border-radius: .2em;
+    box-shadow: 0 1px 5px var(--bg3);
 
-    color: whitesmoke;
+    color: white;
 
     transition: all .25s;
 
     &:hover {
-        box-shadow: 0 1px 5px var(--bg3);
+        box-shadow: 0 2px 7px var(--bg3);
         filter: brightness(1.1);
     }
 }
@@ -35,24 +36,4 @@
 
 .bug-list .actions button:last-child {
     margin-inline-start: auto;
-}
-
-.bug-list li.severity1 {
-    background-color: var(--sv1);
-}
-
-.bug-list li.severity2 {
-    background-color: var(--sv2);
-}
-
-.bug-list li.severity3 {
-    background-color: var(--sv3);
-}
-
-.bug-list li.severity4 {
-    background-color: var(--sv4);
-}
-
-.bug-list li.severity5 {
-    background-color: var(--sv5);
 }

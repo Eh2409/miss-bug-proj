@@ -1,20 +1,21 @@
 :root {
     --bg1: #B3D8A8;
-    --bg2: #3D8D7A;
+    --bg2: #3d8d49;
     --bg3: #2C3930;
 
     --color1: aliceblue;
-    --color2: #FBFFE4;
-    --color3: #A3D1C6;
+    --color2: #eaffe4;
+    --color3: #a3d1b6;
 
     --gray1: #444;
     --gray2: lightgray;
 
-    --sv1: #3D8D7A;
-    --sv2: #3d8d68;
-    --sv3: #698d3d;
-    --sv4: #8d8d3d;
-    --sv5: #8d793d;
+
+    --sv1: #05b411;
+    --sv2: #b7ff00;
+    --sv3: #ffff00;
+    --sv4: #ff9d00;
+    --sv5: #ff1900;
 
 
     --success: green;
