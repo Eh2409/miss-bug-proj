@@ -6,9 +6,6 @@
     margin-block-end: 1em;
 }
 
-.about-us>.site-action {
-    background-color: var(--color2);
-}
 
 .about-us>.site-action>ul {
     display: flex;
@@ -19,15 +16,28 @@
 
 .about-us>.site-action>ul>li {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 120px 1fr;
     align-items: center;
+    gap: 1em;
+
     text-wrap: pretty;
+    background-color: var(--color2);
+    padding: 1em;
+    border-radius: 0.4em;
+    box-shadow: 0 1px 5px var(--bg3);
+    transition: 400ms;
+
+    &:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 1px 2px var(--bg3);
+    }
 }
 
 .about-us>.site-action>ul>li img {
     width: 120px;
     aspect-ratio: 1/1;
 }
+
 
 @media (min-width: 800px) {
     .about-us>.site-action>ul {

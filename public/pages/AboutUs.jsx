@@ -7,7 +7,7 @@ export function AboutUs() {
             With a focus on innovation and quality, Miss Bug stands as the most advanced and reliable solution for managing software bugs.
         </p>
 
-        <div className="site-action full-width main-content">
+        <div className="site-action">
             <ul>
                 <li>
                     <img src="assets/img/list-pixel.png" />
@@ -22,6 +22,6 @@ export function AboutUs() {
                     <span>Remove bugs</span>
                 </li>
             </ul>
-        </div>
-    </section>
+        </div >
+    </section >
 }
