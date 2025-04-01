@@ -19,9 +19,9 @@ function getById(userId) {
     return storageService.get(USER_KEY, userId)
 }
 
-function getByUsername(userName) {
+function getByUsername(username) {
     return storageService.query(USER_KEY)
-        .then(users => users.find(user => user.userName === userName))
+        .then(users => users.find(user => user.username === username))
 }
 
 function add(user) {

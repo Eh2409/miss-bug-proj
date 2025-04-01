@@ -1,5 +1,7 @@
 import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
+import { userService } from './services/user.service.js'
+
 
 import path from 'path'
 import express from 'express'
@@ -14,6 +16,8 @@ app.use(cookieParser())
 app.use(express.json())
 
 // app.get('/', (req, res) => res.send('Hello there'))
+
+// bug api
 
 app.get('/api/bug', (req, res) => {
 
@@ -111,6 +115,31 @@ app.delete('/api/bug/:bugId', (req, res) => {
             res.status(500).send('cannot remove bug')
         })
 })
+
+// user api
+
+
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => {
+            loggerService.error('cannot load users', err)
+            res.status(500).send('cannot load users')
+        })
+})
+
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            loggerService.error('cannot load user', err)
+            res.status(500).send('cannot load user')
+        })
+})
+
+
 
 app.get('/**', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))
