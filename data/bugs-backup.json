@@ -5,7 +5,13 @@
     "description": "Problem when clicking Save",
     "severity": 3,
     "createdAt": 1542107359454,
-    "labels": ["critical"]
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   },
   {
     "_id": "def456",
@@ -13,7 +19,14 @@
     "description": "Problem when loading cars",
     "severity": 2,
     "createdAt": 1542117359454,
-    "labels": ["need-cr","critical"]
+    "labels": [
+      "need-cr",
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "shalom100"
+    }
   },
   {
     "_id": "ghi789",
@@ -21,7 +34,13 @@
     "description": "Problem when clicking car detils",
     "severity": 4,
     "createdAt": 1542127359454,
-    "labels": ["dev-branch"]
+    "labels": [
+      "dev-branch"
+    ],
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   },
   {
     "_id": "jkl012",
@@ -29,7 +48,14 @@
     "description": "Problem when clicking remove car",
     "severity": 1,
     "createdAt": 1542137359454,
-    "labels" : ["critical", "need-cr"]
+    "labels": [
+      "critical",
+      "need-cr"
+    ],
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   },
   {
     "_id": "mno345",
@@ -37,6 +63,12 @@
     "description": "Problem when clicking Save",
     "severity": 5,
     "createdAt": 1542147359454,
-    "labels": ["dev-branch"]
+    "labels": [
+      "dev-branch"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "shalom100"
+    }
   }
 ]
