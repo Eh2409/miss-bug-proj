@@ -97,6 +97,14 @@
     }
 
     .app-header nav {
+        display: flex;
+        justify-content: center;
+        justify-self: center;
+    }
+
+    .app-header .login {
+        display: flex;
+        justify-content: center;
         justify-self: end;
     }
 

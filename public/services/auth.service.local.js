@@ -25,13 +25,14 @@ function signup(user) {
 
 function logout() {
     sessionStorage.removeItem(KEY_LOGGEDIN_USER)
-    return process.release()
+    return Promise.resolve()
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.setItem(KEY_LOGGEDIN_USER)
+    return JSON.parse(sessionStorage.getItem(KEY_LOGGEDIN_USER)
     )
 }
+
 
 function _setLoggedinUser(user) {
     const userToSave = {

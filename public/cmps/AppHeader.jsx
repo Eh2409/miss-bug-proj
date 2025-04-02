@@ -1,14 +1,32 @@
-const { NavLink, Link } = ReactRouterDOM
+import { authService } from "../services/auth.service.local.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+
+const { NavLink, Link, useNavigate } = ReactRouterDOM
 const { useState, useEffect, useRef } = React
 
-export function AppHeader() {
+export function AppHeader({ loggedinUser, setLoggedinUser }) {
 
+    const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    console.log(loggedinUser);
+
 
     function onCloseNav() {
         if (isMenuOpen) {
             setIsMenuOpen(false)
         }
+    }
+
+    function onLogout() {
+        authService.logout()
+            .then(() => {
+                setLoggedinUser(null)
+                navigate('/auth')
+            })
+            .catch(err => {
+                console.log(err)
+                showErrorMsg(`Couldn't logout...`)
+            })
     }
 
     return <header className="app-header main-content single-row">
@@ -19,6 +37,24 @@ export function AppHeader() {
             </div>
         </Link>
 
+        <nav className={isMenuOpen ? 'active' : ''}>
+            <div>
+                <NavLink to="/" onClick={onCloseNav}>Home</NavLink>
+                <NavLink to="/bug" onClick={onCloseNav}>Bugs</NavLink>
+                <NavLink to="/about" onClick={onCloseNav}>About</NavLink>
+            </div>
+        </nav>
+
+        <div className='login'>
+            {loggedinUser
+                ? <React.Fragment>
+                    <span>{loggedinUser.fullname}</span>
+                    <button onClick={onLogout}>logout</button>
+                </React.Fragment>
+                : <NavLink to="/auth" onClick={onCloseNav}>login</NavLink>
+            }
+        </div>
+
         <button className="menu-btn" onClick={() => (setIsMenuOpen(!isMenuOpen))}>
             {isMenuOpen ?
                 <img src="/assets/img/x.png" />
@@ -27,13 +63,6 @@ export function AppHeader() {
             }
         </button>
 
-        <nav className={isMenuOpen ? 'active' : ''}>
-            <div>
-                <NavLink to="/" onClick={onCloseNav}>Home</NavLink>
-                <NavLink to="/bug" onClick={onCloseNav}>Bugs</NavLink>
-                <NavLink to="/about" onClick={onCloseNav}>About</NavLink>
-            </div>
-        </nav>
 
 
     </header>

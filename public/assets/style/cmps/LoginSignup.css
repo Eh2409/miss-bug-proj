@@ -1,0 +1,30 @@
+/* .login-signup {} */
+
+.login-signup header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-block-end: 1px solid var(--bg3);
+    margin-block-end: 1em;
+}
+
+.login-signup form {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5em;
+}
+
+.login-signup form label {
+    grid-column: 1;
+}
+
+.login-signup form input {
+    grid-column: 2;
+}
+
+.login-signup form .form-btn {
+    grid-column: 2 span;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
