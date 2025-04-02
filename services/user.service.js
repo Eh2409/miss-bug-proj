@@ -31,12 +31,13 @@ function getByUsername(username) {
 }
 
 function add(user) {
-    return getByUsername(username)
+    return getByUsername(user.username)
         .then(existingUser => {
             if (existingUser) return Promise.reject('Username taken')
 
             user._id = utilService.makeId()
             users.unshift(user)
+            
             return _saveUsersToFile()
                 .then(() => {
                     user = { ...user }

@@ -11,6 +11,7 @@ const app = express()
 app.use(express.static('public'))
 
 import cookieParser from 'cookie-parser'
+import { authService } from './services/auth.service.js'
 app.use(cookieParser())
 
 app.use(express.json())
@@ -44,8 +45,10 @@ app.get('/api/bug', (req, res) => {
 })
 
 app.post('/api/bug', (req, res) => {
-    const { title, description, severity, labels } = req.body
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`can't add bug`)
 
+    const { title, description, severity, labels } = req.body
     if (!title || severity === undefined) return res.status(400).send('Missing required fields')
 
     const bugToSave = {
@@ -59,13 +62,15 @@ app.post('/api/bug', (req, res) => {
         .then(bug => res.send(bug))
         .catch(err => {
             loggerService.error('cannot add bug', err)
-            res.status(500).send('cannot add bug')
+            res.status(500).send('annot add bug')
         })
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
-    const { title, description, severity, labels, _id } = req.body
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`can't update bug`)
 
+    const { title, description, severity, labels, _id } = req.body
     if (!_id || !title || severity === undefined) return res.status(400).send('Missing required fields')
 
     const bugToSave = {
@@ -107,6 +112,9 @@ app.get('/api/bug/:bugId', (req, res) => {
 
 
 app.delete('/api/bug/:bugId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`can't delete bug`)
+
     const { bugId } = req.params
     bugService.remove(bugId)
         .then(() => res.send('bug removed'))
@@ -117,8 +125,6 @@ app.delete('/api/bug/:bugId', (req, res) => {
 })
 
 // user api
-
-
 app.get('/api/user', (req, res) => {
     userService.query()
         .then(users => res.send(users))
@@ -138,6 +144,48 @@ app.get('/api/user/:userId', (req, res) => {
             res.status(500).send('cannot load user')
         })
 })
+
+// auth api
+
+app.post('/api/auth/login', (req, res) => {
+    const credentials = req.body
+
+    authService.checkLogin(credentials)
+        .then(user => {
+            const loginToken = authService.getLogginToken(user)
+            res.cookie('loginToken', loginToken)
+            res.send(user)
+        })
+        .catch(err => {
+            loggerService.error('Invalid credentials', err)
+            res.status(400).send('Invalid credentials')
+        })
+})
+
+app.post('/api/auth/signup', (req, res) => {
+    const credentials = req.body
+
+    userService.add(credentials)
+        .then(user => {
+            if (user) {
+                const loginToken = authService.getLogginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot singup')
+            }
+        })
+        .catch(err => {
+            loggerService.error('Username taken', err)
+            res.status(400).send('Username taken')
+        })
+})
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out')
+})
+
 
 
 

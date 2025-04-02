@@ -1,5 +1,13 @@
 [
     {
+        "title": "Bug 1742852323218",
+        "description": "KAKA PEPE",
+        "severity": 3,
+        "labels": [],
+        "_id": "dSjgPP",
+        "createdAt": 1743553496071
+    },
+    {
         "_id": "abc123",
         "title": "Cannot save a new car",
         "description": "Problem when clicking Save",
