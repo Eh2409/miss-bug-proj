@@ -10,6 +10,7 @@ export const authService = {
 const KEY_LOGGEDIN_USER = 'loggedinUser'
 
 function login({ username, password }) {
+    console.log(username, password);
     return userService.getByUsername(username)
         .then(user => {
             if (user && user.password === password) return _setLoggedinUser(user)
@@ -35,11 +36,16 @@ function getLoggedinUser() {
 
 
 function _setLoggedinUser(user) {
+    console.log(user);
+
     const userToSave = {
-        _id: user.id,
+        _id: user._id,
+        username: user.username,
         fullname: user.fullname,
         isAdmin: user.isAdmin
     }
+
+    console.log('user to save', userToSave);
 
     sessionStorage.setItem(KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
     return userToSave

@@ -18,10 +18,12 @@ function query() {
 }
 
 function getById(userId) {
+    console.log('Here:', userId)
     return storageService.get(USER_KEY, userId)
 }
 
 function getByUsername(username) {
+
     return storageService.query(USER_KEY)
         .then(users => users.find(user => user.username === username))
 }
@@ -33,6 +35,8 @@ function add(user) {
     return getByUsername(username)
         .then(existingUser => {
             if (existingUser) return Promise.reject('Username taken')
+
+            user._id = utilService.makeId()
 
             return storageService.post(USER_KEY, user)
                 .then(user => {
@@ -57,23 +61,25 @@ function _createUsers() {
 
     users = [
         {
-            userName: 'muki',
+            username: 'muki',
             password: '344366743',
             fullname: 'muki maka',
             _id: "a11"
         },
         {
-            userName: 'puki',
+            username: 'puki',
             password: 'cv345',
             fullname: 'puki nuki',
             _id: "a12"
         },
         {
-            userName: 'shuki',
+            username: 'shuki',
             password: '2345f',
             fullname: 'shuki shaka',
             _id: "a13"
         },
     ]
     utilService.saveToStorage(USER_KEY, users)
+
+    console.log('users:', users)
 }

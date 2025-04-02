@@ -8,8 +8,6 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
 
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    console.log(loggedinUser);
-
 
     function onCloseNav() {
         if (isMenuOpen) {
@@ -48,7 +46,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
         <div className='login'>
             {loggedinUser
                 ? <React.Fragment>
-                    <span>{loggedinUser.fullname}</span>
+                    <NavLink to={`/user/${loggedinUser._id}`}>{loggedinUser.fullname}</NavLink>
                     <button onClick={onLogout}>logout</button>
                 </React.Fragment>
                 : <NavLink to="/auth" onClick={onCloseNav}>login</NavLink>

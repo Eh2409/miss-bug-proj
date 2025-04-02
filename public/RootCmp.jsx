@@ -12,6 +12,7 @@ import { AboutUs } from './pages/AboutUs.jsx'
 import { BugCompose } from './pages/BugCompose.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { authService } from './services/auth.service.local.js'
+import { UserDetails } from './pages/UserDetails.jsx'
 
 const { useState, useEffect, useRef } = React
 
@@ -33,7 +34,7 @@ export function App() {
                     <Route path="/about" element={<AboutUs />} />
 
                     <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
-
+                    <Route path="/user/:userId" element={<UserDetails />} />
                 </Routes>
 
             </main>

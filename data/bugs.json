@@ -1,13 +1,5 @@
 [
     {
-        "title": "Bug 1742852323218",
-        "description": "KAKA PEPE",
-        "severity": 3,
-        "labels": [],
-        "_id": "dSjgPP",
-        "createdAt": 1743553496071
-    },
-    {
         "_id": "abc123",
         "title": "Cannot save a new car",
         "description": "Problem when clicking Save",
@@ -17,8 +9,8 @@
             "critical"
         ],
         "creator": {
-            "_id": "u101",
-            "fullname": "Puki Ja"
+            "_id": "a11",
+            "username": "muki"
         }
     },
     {
@@ -33,7 +25,7 @@
         ],
         "creator": {
             "_id": "u102",
-            "fullname": "shalom100"
+            "username": "shalom100"
         }
     },
     {
@@ -47,7 +39,7 @@
         ],
         "creator": {
             "_id": "u101",
-            "fullname": "Puki Ja"
+            "username": "Puki Ja"
         }
     },
     {
@@ -62,7 +54,7 @@
         ],
         "creator": {
             "_id": "u101",
-            "fullname": "Puki Ja"
+            "username": "Puki Ja"
         }
     },
     {
@@ -76,7 +68,7 @@
         ],
         "creator": {
             "_id": "u102",
-            "fullname": "shalom al lehem"
+            "username": "shalom100"
         }
     }
 ]
