@@ -2,7 +2,7 @@
   "name": "miss-bug-proj",
   "version": "1.0.0",
   "description": "miss bug",
-  "main": "src/server.js",
+  "main": "server.js",
   "type": "module",
   "directories": {
     "lib": "lib"
@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon --ignore \"./data\" server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js"
+    "start": "node server.js"
   },
   "author": "Eliad",
   "license": "ISC",
