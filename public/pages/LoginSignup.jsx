@@ -1,5 +1,5 @@
-import { authService } from "../services/auth.service.local.js"
-import { userService } from "../services/user.service.local.js"
+import { authService } from "../services/auth.service.remote.js"
+import { userService } from "../services/user.service.remote.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 const { useState, useEffect, useRef } = React
@@ -11,9 +11,8 @@ export function LoginSignup({ setLoggedinUser }) {
     const navigate = useNavigate()
 
     const [isSignup, setIsSignup] = useState(false)
-
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-    console.log(credentials);
+
 
     function handleChange({ target }) {
         var { name, value } = target

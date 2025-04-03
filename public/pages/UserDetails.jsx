@@ -1,6 +1,6 @@
 import { BugList } from "../cmps/BugList.jsx"
 import { bugService } from "../services/bug.service.remote.js"
-import { userService } from "../services/user.service.local.js"
+import { userService } from "../services/user.service.remote.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 

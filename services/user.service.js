@@ -36,8 +36,9 @@ function add(user) {
             if (existingUser) return Promise.reject('Username taken')
 
             user._id = utilService.makeId()
+            console.log('user:', user)
             users.unshift(user)
-            
+
             return _saveUsersToFile()
                 .then(() => {
                     user = { ...user }

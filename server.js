@@ -154,6 +154,7 @@ app.post('/api/auth/login', (req, res) => {
         .then(user => {
             const loginToken = authService.getLogginToken(user)
             res.cookie('loginToken', loginToken)
+            console.log(user);
             res.send(user)
         })
         .catch(err => {
@@ -185,8 +186,6 @@ app.post('/api/auth/logout', (req, res) => {
     res.clearCookie('loginToken')
     res.send('logged-out')
 })
-
-
 
 
 app.get('/**', (req, res) => {

@@ -1,4 +1,4 @@
-import { authService } from "../services/auth.service.local.js"
+import { authService } from "../services/auth.service.remote.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 
 const { NavLink, Link, useNavigate } = ReactRouterDOM
@@ -18,6 +18,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
     function onLogout() {
         authService.logout()
             .then(() => {
+                console.log('ok');
                 setLoggedinUser(null)
                 navigate('/auth')
             })
