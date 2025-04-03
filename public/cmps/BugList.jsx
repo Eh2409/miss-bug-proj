@@ -8,8 +8,9 @@ export function BugList({ bugs, onRemoveBug }) {
     const user = authService.getLoggedinUser()
 
     function isAllowed(bug) {
+        console.log('user:', user)
         if (!user) return false
-        if (user._id === bug.creator._id) return true
+        if (user.isAdmin || user._id === bug.creator._id) return true
 
         return false
     }

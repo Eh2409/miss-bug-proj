@@ -65,7 +65,7 @@ function remove(bugId, loggedinUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
     if (bugIdx === -1) return Promise.reject('cannot remove bug - ' + bugId)
 
-    if (loggedinUser._id !== bugs[bugIdx].creator._id) {
+    if (!loggedinUser.isAdmin && loggedinUser._id !== bugs[bugIdx].creator._id) {
         return Promise.reject('Not your bug')
     }
 
@@ -76,7 +76,9 @@ function remove(bugId, loggedinUser) {
 function save(bugToSave, loggedinUser) {
     if (bugToSave._id) {
 
-        if (loggedinUser._id !== bugToSave.creator._id) {
+        console.log(loggedinUser)
+
+        if (!loggedinUser.isAdmin && loggedinUser._id !== bugToSave.creator._id) {
             return Promise.reject('Not your bug')
         }
 
