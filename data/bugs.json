@@ -1,21 +1,5 @@
 [
     {
-        "title": "fdgfd",
-        "description": "fd",
-        "severity": 2,
-        "labels": [
-            "critical"
-        ],
-        "_id": "8QrE0r",
-        "createdAt": 1743647753563,
-        "creator": {
-            "_id": "u101",
-            "username": "Eliad",
-            "fullname": "Eliad haim",
-            "isAdmin": true
-        }
-    },
-    {
         "_id": "jkl012",
         "title": "Cannot remove car",
         "description": "Problem when clicking remove car",
