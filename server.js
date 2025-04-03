@@ -145,6 +145,20 @@ app.get('/api/user/:userId', (req, res) => {
         })
 })
 
+app.delete('/api/user/:userId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`can't remove user`)
+
+    const { userId } = req.params
+
+    userService.remove(userId, loggedinUser)
+        .then(() => res.send('User removed'))
+        .catch(err => {
+            loggerService.error('cannot remove user', err)
+            res.status(500).send('cannot remove user')
+        })
+})
+
 // auth api
 
 app.post('/api/auth/login', (req, res) => {

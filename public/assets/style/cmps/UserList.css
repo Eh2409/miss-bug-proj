@@ -1,0 +1,28 @@
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1em;
+
+    padding: 0;
+    list-style: none;
+}
+
+.user-list li {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+
+    padding: .7em;
+    background-color: var(--bg2);
+    border-radius: .2em;
+    box-shadow: 0 1px 5px var(--bg3);
+
+    color: white;
+
+    transition: all .25s;
+
+    &:hover {
+        box-shadow: 0 2px 7px var(--bg3);
+        filter: brightness(1.1);
+    }
+}

@@ -13,6 +13,7 @@ import { BugCompose } from './pages/BugCompose.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { authService } from './services/auth.service.remote.js'
 import { UserDetails } from './pages/UserDetails.jsx'
+import { UserIndex } from './pages/UserIndex.jsx'
 
 const { useState, useEffect, useRef } = React
 
@@ -32,6 +33,8 @@ export function App() {
                     <Route path="/bug/edit/:bugId" element={<BugCompose />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
+
+                    <Route path="/user" element={<UserIndex />} />
 
                     <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
                     <Route path="/user/:userId" element={<UserDetails />} />

@@ -32,21 +32,6 @@
         }
     },
     {
-        "_id": "ghi789",
-        "title": "Cannot read car",
-        "description": "Problem when clicking car detils",
-        "severity": 4,
-        "createdAt": 1542127359454,
-        "labels": [
-            "dev-branch"
-        ],
-        "creator": {
-            "_id": "u103",
-            "username": "goat",
-            "fullname": "goat the goat"
-        }
-    },
-    {
         "_id": "abc123",
         "title": "Cannot save a new dsfcar",
         "description": "Problem when clicking Save",

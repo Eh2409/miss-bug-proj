@@ -7,7 +7,8 @@ export const userService = {
     getById,
     getByUsername,
     add,
-    getEmptyCredentials
+    getEmptyCredentials,
+    remove
 }
 
 const USER_KEY = 'user_key'
@@ -52,6 +53,10 @@ function getEmptyCredentials() {
         password: '',
         fullname: '',
     }
+}
+
+function remove(userId) {
+    return storageService.remove(USER_KEY, userId)
 }
 
 

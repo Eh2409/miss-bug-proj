@@ -19,4 +19,6 @@
 @import './cmps/BugLabelsPicker.css';
 @import './cmps/BugPreview.css';
 @import './cmps/BugSort.css';
+
 @import './cmps/LoginSignup.css';
+@import './cmps/UserList.css';

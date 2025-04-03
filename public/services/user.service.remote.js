@@ -1,5 +1,4 @@
 import { storageService } from "./async-storage.service.js";
-import { utilService } from "./util.service.js";
 
 
 export const userService = {
@@ -7,6 +6,7 @@ export const userService = {
     getById,
     getByUsername,
     add,
+    remove,
     getEmptyCredentials
 }
 
@@ -39,6 +39,10 @@ function add(user) {
                     return user
                 })
         })
+}
+
+function remove(userId) {
+    return axios.delete(BASE_URL + userId).then(res => res.data)
 }
 
 function getEmptyCredentials() {

@@ -13,7 +13,14 @@ export const userService = {
 const users = utilService.readJsonFile('data/user.json')
 
 function query() {
-    const userToReturn = users.map(user => ({ _id: user._id, fullname: user.fullname }))
+    const userToReturn = users.map(user => {
+        return ({
+            _id: user._id,
+            fullname: user.fullname,
+            username: user.username,
+            isAdmin: user.isAdmin,
+        })
+    })
     return Promise.resolve(userToReturn)
 }
 
@@ -48,8 +55,15 @@ function add(user) {
         })
 }
 
-function remove(userId) {
-    users = users.find(user => user._id !== userId)
+function remove(userId, loggedinUser) {
+    const userIdx = users.findIndex(user => user._id === userId)
+    if (userIdx === -1) return Promise.reject('cannot remove user - ' + userId)
+
+    if (!loggedinUser.isAdmin) {
+        return Promise.reject('Not Admin')
+    }
+
+    users.splice(userIdx, 1)
     return _saveUsersToFile()
 }
 
