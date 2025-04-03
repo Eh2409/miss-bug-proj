@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const { useSearchParams, Link } = ReactRouterDOM
 
 import { bugService } from '../services/bug.service.remote.js'
+import { authService } from '../services/auth.service.remote.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/BugFilter.jsx'
@@ -9,7 +10,11 @@ import { BugList } from '../cmps/BugList.jsx'
 import { BugSort } from '../cmps/BugSort.jsx'
 
 
+
 export function BugIndex() {
+
+    const loggedinUser = authService.getLoggedinUser()
+
     const [bugs, setBugs] = useState(null)
     const [maxPageCount, setMaxPageCountBugs] = useState(null)
 
@@ -64,7 +69,7 @@ export function BugIndex() {
         <header>
             <h3>Bug List</h3>
             <BugSort sortBy={sortBy} onSetSortBy={onSetSortBy} />
-            <Link to='/bug/compose'><button>Add Bug</button></Link>
+            {loggedinUser && <Link to='/bug/compose'><button>Add Bug</button></Link>}
         </header>
 
         <BugList

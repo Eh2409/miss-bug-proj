@@ -2,7 +2,6 @@ import { bugService } from './services/bug.service.js'
 import { loggerService } from './services/logger.service.js'
 import { userService } from './services/user.service.js'
 
-
 import path from 'path'
 import express from 'express'
 
@@ -12,8 +11,8 @@ app.use(express.static('public'))
 
 import cookieParser from 'cookie-parser'
 import { authService } from './services/auth.service.js'
-app.use(cookieParser())
 
+app.use(cookieParser())
 app.use(express.json())
 
 // app.get('/', (req, res) => res.send('Hello there'))
@@ -58,7 +57,7 @@ app.post('/api/bug', (req, res) => {
         labels: labels || [],
     }
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(bug => res.send(bug))
         .catch(err => {
             loggerService.error('cannot add bug', err)
@@ -70,8 +69,8 @@ app.put('/api/bug/:bugId', (req, res) => {
     const loggedinUser = authService.validateToken(req.cookies.loginToken)
     if (!loggedinUser) return res.status(401).send(`can't update bug`)
 
-    const { title, description, severity, labels, _id } = req.body
-    if (!_id || !title || severity === undefined) return res.status(400).send('Missing required fields')
+    const { title, description, severity, labels, _id, creator } = req.body
+    if (!_id || !title || severity === undefined || !creator) return res.status(400).send('Missing required fields')
 
     const bugToSave = {
         _id,
@@ -79,9 +78,10 @@ app.put('/api/bug/:bugId', (req, res) => {
         description,
         severity: +severity,
         labels: labels || [],
+        creator,
     }
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(bug => res.send(bug))
         .catch(err => {
             loggerService.error('cannot update bug', err)
@@ -116,7 +116,7 @@ app.delete('/api/bug/:bugId', (req, res) => {
     if (!loggedinUser) return res.status(401).send(`can't delete bug`)
 
     const { bugId } = req.params
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedinUser)
         .then(() => res.send('bug removed'))
         .catch(err => {
             loggerService.error('cannot remove bug', err)

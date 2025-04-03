@@ -61,20 +61,31 @@ function getById(bugId) {
     return Promise.resolve(bug)
 }
 
-function remove(bugId) {
+function remove(bugId, loggedinUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
     if (bugIdx === -1) return Promise.reject('cannot remove bug - ' + bugId)
+
+    if (loggedinUser._id !== bugs[bugIdx].creator._id) {
+        return Promise.reject('Not your bug')
+    }
+
     bugs.splice(bugIdx, 1)
     return _saveBugsToFile()
 }
 
-function save(bugToSave) {
+function save(bugToSave, loggedinUser) {
     if (bugToSave._id) {
+
+        if (loggedinUser._id !== bugToSave.creator._id) {
+            return Promise.reject('Not your bug')
+        }
+
         const idx = bugs.findIndex(bug => bug._id === bugToSave._id)
         bugs[idx] = { ...bugs[idx], ...bugToSave }
     } else {
         bugToSave._id = utilService.makeId()
         bugToSave.createdAt = Date.now()
+        bugToSave.creator = loggedinUser
         bugs.unshift(bugToSave)
     }
     return _saveBugsToFile().then(() => bugToSave)
