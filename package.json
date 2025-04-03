@@ -2,7 +2,7 @@
   "name": "miss-bug-proj",
   "version": "1.0.0",
   "description": "miss bug",
-  "main": "server.js",
+  "main": "src/server.js",
   "type": "module",
   "directories": {
     "lib": "lib"
