@@ -1,5 +1,6 @@
 import fs from 'fs'
 import { utilService } from './util.service.js'
+import { bugService } from './bug.service.js'
 
 
 export const userService = {
@@ -63,8 +64,18 @@ function remove(userId, loggedinUser) {
         return Promise.reject('Not Admin')
     }
 
-    users.splice(userIdx, 1)
-    return _saveUsersToFile()
+    return _isUserHaveBug(userId)
+        .then(isUserHaveBug => {
+            if (isUserHaveBug) return Promise.reject('cannot remove user that own bug')
+
+            users.splice(userIdx, 1)
+            return _saveUsersToFile()
+        })
+}
+
+function _isUserHaveBug(userId) {
+    return bugService.query()
+        .then(data => data.bugs.some(bug => bug.creator._id === userId))
 }
 
 function _saveUsersToFile() {

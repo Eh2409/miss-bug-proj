@@ -12,7 +12,7 @@ const bugs = utilService.readJsonFile('data/bugs.json')
 
 const PAGE_SIZE = 4
 
-function query(filterBy, sortBy) {
+function query(filterBy = {}, sortBy = {}) {
 
     console.log(filterBy, sortBy);
 
