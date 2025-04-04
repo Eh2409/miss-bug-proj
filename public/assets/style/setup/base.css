@@ -4,10 +4,10 @@ body {
 
     background-color: var(--bg1);
     background-image: url(./../../img/backgound.png),
-        linear-gradient(to right top, #17d280, #7be281, #17d267);
+        linear-gradient(to right top, #0f8a5f, #1cb978, #17d267);
     background-position: center;
+    backdrop-filter: blur(2px);
 }
-
 
 button {
     font-family: PixelifySans, Arial, sans-serif;
@@ -37,6 +37,7 @@ button:disabled {
         filter: brightness(1);
     }
 }
+
 
 hr {
     display: block;

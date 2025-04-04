@@ -13,11 +13,11 @@
     }
 
     40% {
-        filter: hue-rotate(40deg) drop-shadow(8px 8px 10px rgba(110, 248, 152, 0.5));
+        filter: hue-rotate(40deg) drop-shadow(8px 8px 10px rgba(254, 255, 254, 0.5));
     }
 
     60% {
-        filter: hue-rotate(40deg) drop-shadow(8px 8px 10px rgba(110, 248, 152, 0.5));
+        filter: hue-rotate(40deg) drop-shadow(8px 8px 10px rgba(254, 255, 254, 0.5));
     }
 
     100% {

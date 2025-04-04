@@ -5,10 +5,16 @@
     font-weight: bold;
 }
 
-.app-header>* {
-    align-items: center;
-    grid-row: 1;
+.app-header .header-content {
+    display: grid;
+    place-items: center;
 }
+
+.app-header .header-content>* {
+    grid-row: 1;
+    text-align: center;
+}
+
 
 .app-header a {
     text-decoration: none;
@@ -44,10 +50,12 @@
 
 
 @media (max-width: 800px) {
-    .app-header nav {
-        grid-row: 2;
-        border-radius: 1em;
+    .app-header .header-content nav {
+        grid-area: 2 / 1 / 2 / 4;
+        border-radius: 0.4em;
         background-color: rgba(4, 98, 59, 0.5);
+
+        width: 100%;
 
         display: grid;
         grid-template-rows: 0fr;
@@ -83,6 +91,12 @@
 
 @media (min-width: 800px) {
 
+    .app-header .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .app-header .main-logo {
         font-size: 2.5em;
         cursor: pointer;
@@ -93,24 +107,26 @@
     }
 
     .app-header nav {
-        gap: 1.5em;
-    }
-
-    .app-header nav {
         display: flex;
         justify-content: center;
         justify-self: center;
+        gap: 2em;
     }
 
     .app-header .login {
         display: flex;
         justify-content: center;
         justify-self: end;
+        font-size: 1.2em;
+    }
+
+    .app-header .login a {
+        align-self: center;
     }
 
     .app-header nav>div {
         display: flex;
-        gap: 1em;
+        gap: 1.5em;
     }
 
     .app-header nav a:hover {
