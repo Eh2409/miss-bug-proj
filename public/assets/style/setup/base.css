@@ -6,7 +6,9 @@ body {
     background-image: url(./../../img/backgound.png),
         linear-gradient(to right top, #0f8a5f, #1cb978, #17d267);
     background-position: center;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(1px);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 button {

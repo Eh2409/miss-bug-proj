@@ -69,7 +69,8 @@ export function BugLabelsPicker({ labels, onSaveLabels, bugEditLabels = null }) 
                 <span className="btn-text" ref={selectBtnTitleRef}>
                     Select Label
                 </span>
-                <span>🔽</span>
+                <img src="/assets/img/chevron-down.svg" alt="arrow" className="arrow-down" />
+
             </div>
             {isLabelPickerOpen && <ul className="label-list" ref={labelsListRef} onClick={(event) => event.stopPropagation()}>
                 {['critical', 'need-cr', 'dev-branch'].map(label => {

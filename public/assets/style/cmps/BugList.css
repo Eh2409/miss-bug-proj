@@ -15,17 +15,17 @@
     gap: 0.5em;
 
     padding: .7em;
-    background-color: var(--bg2);
+    background-color: var(--color2);
     border-radius: .2em;
     box-shadow: 0 1px 5px var(--bg3);
 
-    color: white;
+    color: black;
 
     transition: all .25s;
 
     &:hover {
         box-shadow: 0 2px 7px var(--bg3);
-        filter: brightness(1.1);
+        filter: brightness(1.02);
     }
 }
 

@@ -3,8 +3,7 @@ export function BugPreview({ bug }) {
         <p className="title">{bug.title}</p>
         <div className="severity">
             <span>Severity:</span>
-            <span>{bug.severity}</span>
-            <span className={`level severity${bug.severity}`}></span>
+            <span className={`severity-num${bug.severity}`}>{bug.severity}</span>
         </div>
     </article>
 }

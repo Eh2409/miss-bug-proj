@@ -1,6 +1,6 @@
 .bug-filter {
-    background-color: var(--bg2);
-    color: var(--color3);
+    background-color: var(--color3);
+    color: black;
     border-radius: 0.2em;
     padding: 1em;
     text-align: center;
@@ -17,11 +17,11 @@
 }
 
 .bug-filter .labels-title,
-.bug-filter label {
+.bug-filter>form>label {
     grid-column: 1;
     text-align: start;
     margin-inline-start: 1em;
-
+    font-size: 0.8em;
 }
 
 .bug-filter .labels-picker,
@@ -30,8 +30,10 @@
 }
 
 
-/* @media (min-width: 800px) {
-    .bug-filter form {
-        display: block;
+@media (min-width: 800px) {
+
+    .bug-filter .labels-title,
+    .bug-filter>form>label {
+        font-size: 1em;
     }
-} */
+}
