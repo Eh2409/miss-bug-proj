@@ -34,17 +34,23 @@ function getById(userId) {
 }
 
 function getByUsername(username) {
-    const user = users.find(user => user.username === username)
+    var user = users.find(user => user.username === username)
     return Promise.resolve(user)
 }
 
 function add(user) {
-    return getByUsername(user.username)
+    const { username, fullname, password } = user
+
+    if (!username || !fullname || !password) {
+        return Promise.reject('Incomplete credentials')
+    }
+
+    return getByUsername(username)
         .then(existingUser => {
             if (existingUser) return Promise.reject('Username taken')
 
             user._id = utilService.makeId()
-            console.log('user:', user)
+            user.isAdmin = false
             users.unshift(user)
 
             return _saveUsersToFile()
