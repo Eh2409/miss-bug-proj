@@ -62,7 +62,6 @@ export function LoginSignup({ setLoggedinUser }) {
                 <h2>
                     {isSignup ? 'Signup' : 'Login'}
                 </h2>
-                <button type="button" onClick={() => { navigate('/bug') }}>Back to List</button>
 
             </header>
 
@@ -81,7 +80,7 @@ export function LoginSignup({ setLoggedinUser }) {
                 <input type="text" id="password" name="password" value={password} onChange={handleChange} required />
 
                 <div className="form-btn">
-                    <button>{isSignup ? 'Signup' : 'Loggin'}</button>
+                    <button>{isSignup ? 'Signup' : 'Login'}</button>
                     <a href="#" onClick={() => { setIsSignup(!isSignup) }}>
                         {isSignup ? 'Have you registered yet? Create an account'
                             : 'New to the site? Create an account now'}
