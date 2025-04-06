@@ -3,19 +3,50 @@
 }
 
 .bug-details>.bug-info {
-    background-color: var(--bg2);
-    color: var(--color1);
+    background-color: var(--color2);
+    color: black;
     padding: 1em 0.5em;
     border-radius: 0.2em;
 }
 
-.bug-details h5 {
-    margin: 1em 0;
-    font-size: 1.1em;
+.bug-details>.bug-info>*:not(:last-child) {
+    margin-block-end: 1em;
 }
 
-.bug-details h5 span {
-    color: red;
+.bug-details .bug-label {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 2px;
+    border: 0;
+    border-radius: .2em;
+    padding: 0.4em;
+    background-color: var(--bg2);
+    color: whitesmoke;
+    transition: filter .2s;
+    font-size: 0.8em;
+    box-shadow: 0 1px 5px var(--bg1);
+    cursor: auto;
+
+    &:hover {
+        filter: brightness(1);
+    }
+}
+
+.bug-details .labels-title,
+.bug-details .severity span:first-of-type {
+    justify-self: start;
+    font-weight: bold;
+}
+
+.bug-details .severity span:last-of-type {
+    display: inline-block;
+    width: 1.5em;
+    aspect-ratio: 1/1;
+    text-align: center;
+
+    align-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-inline: 1em;
 }
 
 .bug-details p {

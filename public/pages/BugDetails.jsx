@@ -27,7 +27,18 @@ export function BugDetails() {
             bug &&
             <div className='bug-info'>
                 <h4>{bug.title}</h4>
-                <h5>Severity: <span>{bug.severity}</span></h5>
+                {bug.labels.length > 0 &&
+                    <div>
+                        <span className='labels-title'>labels:</span>
+
+                        {bug.labels.map(label => <button key={label} className="bug-label">{label}</button>)}
+                    </div>
+
+                }
+                <div className="severity">
+                    <span>Severity:</span>
+                    <span className={`severity-num${bug.severity}`}>{bug.severity}</span>
+                </div>
                 <p>Description: <span>{bug.description}</span></p>
             </div>
         }
