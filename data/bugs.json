@@ -20,6 +20,7 @@
         "severity": 1,
         "createdAt": 1542137359454,
         "labels": [
+            "dev-branch",
             "critical",
             "need-cr"
         ],

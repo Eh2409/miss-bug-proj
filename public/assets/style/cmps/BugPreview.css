@@ -5,8 +5,33 @@
 }
 
 .bug-preview .title {
+    display: block;
+    white-space: normal;
+
     font-weight: bold;
-    font-size: 1.1em;
+}
+
+.bug-preview .title span,
+.bug-preview .title .bug-label {
+    vertical-align: middle;
+}
+
+.bug-preview .bug-label {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 2px;
+    border: 0;
+    border-radius: .2em;
+    padding: 0.4em;
+    background-color: var(--bg2);
+    color: whitesmoke;
+    transition: filter .2s;
+    font-size: 0.7em;
+    box-shadow: 0 1px 5px var(--bg1);
+    cursor: auto;
+
+    &:hover {
+        filter: brightness(1);
+    }
 }
 
 .bug-preview .severity {
@@ -16,8 +41,12 @@
     gap: .3em;
 }
 
+.bug-preview .severity span:first-of-type {
+    justify-self: start;
+}
+
 .bug-preview .severity span:last-of-type {
-    width: 2em;
+    width: 1.5em;
     aspect-ratio: 1/1;
     text-align: center;
 
@@ -26,22 +55,23 @@
     font-weight: bold;
 }
 
-.bug-preview .severity>.severity-num1 {
+
+.severity>.severity-num1 {
     outline: 6px solid rgb(2, 166, 65);
 }
 
-.bug-preview .severity>.severity-num2 {
+.severity>.severity-num2 {
     outline: 6px solid rgb(176, 229, 42);
 }
 
-.bug-preview .severity>.severity-num3 {
+.severity>.severity-num3 {
     outline: 6px solid rgb(238, 234, 2);
 }
 
-.bug-preview .severity>.severity-num4 {
+.severity>.severity-num4 {
     outline: 6px solid rgb(255, 145, 0);
 }
 
-.bug-preview .severity>.severity-num5 {
+.severity>.severity-num5 {
     outline: 6px solid rgb(255, 0, 0);
 }
