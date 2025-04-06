@@ -5,7 +5,6 @@ const crypter = new Cryptr(process.env.SECRET1 || 'secret-bug-1020')
 
 export const authService = {
     checkLogin,
-    signup,
     getLogginToken,
     validateToken,
 }
@@ -22,11 +21,6 @@ function checkLogin({ username, password }) {
         })
 }
 
-function signup(user) {
-    return userService.add(user)
-        .then(_setLoggedinUser)
-        .catch(err => Promise.reject(err))
-}
 
 function getLogginToken(user) {
     const str = JSON.stringify(user)
