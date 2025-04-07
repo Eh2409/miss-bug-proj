@@ -19,6 +19,10 @@ function query(filterBy = {}, sortBy = {}) {
     return Promise.resolve(bugs)
         .then(bugs => {
 
+            if (filterBy.userId) {
+                bugs = bugs.filter(bug => bug.creator._id !== filterBy.userId)
+            }
+
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 bugs = bugs.filter(bug => regExp.test(bug.title))

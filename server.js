@@ -28,6 +28,7 @@ app.get('/api/bug', (req, res) => {
         minSeverity: +req.query.minSeverity || 0,
         labels: req.query.labels || '',
         pageIdx: (req.query.pageIdx !== undefined) ? +req.query.pageIdx : undefined,
+        userId: req.query.userId || ''
     }
 
     const sortBy = {

@@ -33,18 +33,14 @@ export function UserDetails() {
     function loadUser(userId) {
         userService.getById(userId)
             .then(user => {
-                console.log('user:', user)
                 setUser(user)
             })
             .catch(err => showErrorMsg(`Cannot load user`, err))
     }
 
     function loadBugs() {
-        bugService.query()
-            .then(data => {
-                const userBugs = data.bugs.filter(bug => bug.creator.username === user.username)
-                setBugs(userBugs)
-            })
+        bugService.query({ userId: user._id })
+            .then(data => setBugs(data.bugs))
             .catch(err => showErrorMsg(`Cannot load bugs`, err))
     }
 
