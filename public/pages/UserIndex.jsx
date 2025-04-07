@@ -4,15 +4,23 @@ import { userService } from "../services/user.service.remote.js"
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 const { useState, useEffect, useRef } = React
+const { useNavigate } = ReactRouterDOM
 
 export function UserIndex() {
     const loggedinUser = authService.getLoggedinUser()
     const [users, setUsers] = useState(null)
-    console.log(users);
+    const navigate = useNavigate()
 
 
     useEffect(() => {
         loadUsers()
+    }, [])
+
+    useEffect(() => {
+        if (!loggedinUser) {
+            navigate('/auth')
+            showErrorMsg(`You don't have permission to view this page. Please log in to continue.`)
+        }
     }, [])
 
     function loadUsers() {
@@ -33,14 +41,16 @@ export function UserIndex() {
             .catch((err) => showErrorMsg(`Cannot remove User`, err))
     }
 
+
     return (
         <section className="user-index main-content">
+
             <header>
                 <h2>users</h2>
                 <hr />
             </header>
 
-            {users && <UserList users={users} onRemoveUser={onRemoveUser} />}
+            {users && <UserList users={users} onRemoveUser={onRemoveUser} loggedinUser={loggedinUser} />}
         </section>
     )
 }
