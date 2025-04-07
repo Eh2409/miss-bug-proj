@@ -20,7 +20,7 @@ function query(filterBy = {}, sortBy = {}) {
         .then(bugs => {
 
             if (filterBy.userId) {
-                bugs = bugs.filter(bug => bug.creator._id !== filterBy.userId)
+                bugs = bugs.filter(bug => bug.creator._id === filterBy.userId)
             }
 
             if (filterBy.txt) {
