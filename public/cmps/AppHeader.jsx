@@ -42,7 +42,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
                     <NavLink to="/" onClick={onCloseNav}>Home</NavLink>
                     <NavLink to="/bug" onClick={onCloseNav}>Bugs</NavLink>
                     <NavLink to="/about" onClick={onCloseNav}>About</NavLink>
-                    {loggedinUser && loggedinUser.isAdmin && <NavLink to="/user" onClick={onCloseNav}>Users</NavLink>}
+                    {loggedinUser && loggedinUser.isAdmin && <NavLink to="/users" onClick={onCloseNav}>Users</NavLink>}
                 </div>
             </nav>
 

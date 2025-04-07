@@ -34,7 +34,7 @@ export function App() {
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
 
-                    <Route path="/user" element={<UserIndex />} />
+                    <Route path="/users" element={<UserIndex />} />
 
                     <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
                     <Route path="/user/:userId" element={<UserDetails />} />
